@@ -1,0 +1,31 @@
+export default function TemplatesSettingsPage() {
+  return (
+    <div className="space-y-6">
+      <section>
+        <h2 className="text-2xl font-semibold text-slate-900">Templates & branding</h2>
+        <p className="text-sm text-slate-600">Customize invoice and OR appearance.</p>
+      </section>
+
+      <section className="grid grid-cols-1 gap-6 lg:grid-cols-[2fr_1fr]">
+        <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
+          <div className="flex items-center justify-between">
+            <h3 className="text-sm font-semibold text-slate-900">Default template</h3>
+            <button className="text-xs font-semibold text-[#1a73e8]">Edit</button>
+          </div>
+          <div className="mt-4 h-48 rounded-xl border border-dashed border-slate-200 bg-slate-50" />
+          <p className="mt-3 text-xs text-slate-500">Template preview placeholder.</p>
+        </div>
+        <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
+          <h3 className="text-sm font-semibold text-slate-900">Branding</h3>
+          <div className="mt-4 space-y-2 text-sm text-slate-600">
+            <p>Logo: abc-logo.png</p>
+            <p>Primary color: #1A73E8</p>
+          </div>
+          <button className="mt-6 h-10 w-full rounded-xl border border-slate-200 text-sm font-semibold text-slate-600">
+            Update branding
+          </button>
+        </div>
+      </section>
+    </div>
+  );
+}

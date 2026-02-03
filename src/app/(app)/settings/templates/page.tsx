@@ -12,6 +12,9 @@ export default function TemplatesSettingsPage() {
             <h3 className="text-sm font-semibold text-slate-900">Default template</h3>
             <button className="text-xs font-semibold text-[#1a73e8]">Edit</button>
           </div>
+          <p className="mt-2 text-xs text-slate-500">
+            Includes VAT/Non-VAT text blocks, RDO, ATP, and PTU fields.
+          </p>
           <div className="mt-4 h-48 rounded-xl border border-dashed border-slate-200 bg-slate-50" />
           <p className="mt-3 text-xs text-slate-500">Template preview placeholder.</p>
         </div>

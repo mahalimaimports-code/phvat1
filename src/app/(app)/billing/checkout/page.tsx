@@ -11,6 +11,9 @@ export default function BillingCheckoutPage() {
           <p>Plan: Standard · ₱99/month</p>
           <p>Next billing: Mar 8, 2026</p>
         </div>
+        <div className="mt-4 rounded-xl border border-slate-200 bg-slate-50 p-3 text-xs text-slate-600">
+          You will be redirected to PayMongo to complete payment securely.
+        </div>
         <button className="mt-6 h-11 rounded-xl bg-[#1a73e8] px-6 text-sm font-semibold text-white">
           Proceed to PayMongo checkout
         </button>

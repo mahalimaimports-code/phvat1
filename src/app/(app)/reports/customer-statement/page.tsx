@@ -21,6 +21,9 @@ export default function CustomerStatementReportPage() {
             <input className="h-11 w-full rounded-xl border border-slate-200 px-4 text-sm" defaultValue="Jan 1, 2026 - Feb 3, 2026" />
           </div>
         </div>
+        <div className="mt-4 rounded-xl border border-slate-200 bg-slate-50 p-3 text-xs text-slate-600">
+          Statements include unpaid invoices, credits, and recorded payments.
+        </div>
         <button className="mt-6 h-11 rounded-xl bg-[#1a73e8] px-6 text-sm font-semibold text-white">Generate</button>
       </section>
     </div>

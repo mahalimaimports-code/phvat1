@@ -17,10 +17,13 @@ export default function ReportsPage() {
           <a
             key={report.title}
             href={report.href}
-            className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm hover:border-[#1a73e8]/50"
+            className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm transition hover:border-[#1a73e8]/50 hover:shadow-md"
           >
             <h3 className="text-sm font-semibold text-slate-900">{report.title}</h3>
             <p className="mt-2 text-sm text-slate-600">{report.desc}</p>
+            <div className="mt-6 text-xs font-semibold text-[#1a73e8]">
+              Open report →
+            </div>
           </a>
         ))}
       </section>

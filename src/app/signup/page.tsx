@@ -23,6 +23,9 @@ export default function SignUpPage() {
           </div>
 
           <div className="mt-10 space-y-6">
+            <p className="text-xs font-semibold uppercase tracking-[0.25em] text-slate-400">
+              Get started
+            </p>
             <h1 className="text-4xl font-semibold leading-tight text-slate-900">
               Start your compliance-first setup in minutes.
             </h1>
@@ -119,13 +122,17 @@ export default function SignUpPage() {
                   className="h-11 w-full rounded-xl border border-slate-200 px-4 text-sm text-slate-900 outline-none transition focus:border-[#1a73e8] focus:ring-2 focus:ring-[#1a73e8]/20"
                   placeholder="+63 9XX XXX XXXX"
                 />
+                <p className="text-xs text-slate-500">
+                  Used for account recovery and billing updates.
+                </p>
               </div>
               <button className="h-11 w-full rounded-xl bg-[#1a73e8] text-sm font-semibold text-white shadow-[0_12px_24px_rgba(26,115,232,0.35)] transition hover:bg-[#165ec3]">
                 Start free trial
               </button>
-              <p className="text-xs text-slate-500">
-                By signing up, you agree to the Terms and Privacy Policy.
-              </p>
+              <div className="rounded-xl border border-slate-200 bg-slate-50 p-3 text-xs text-slate-500">
+                By signing up, you agree to the Terms and Privacy Policy. We never
+                claim BIR approval.
+              </div>
             </div>
 
             <div className="mt-6 flex items-center justify-between text-xs text-slate-500">

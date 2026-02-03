@@ -26,6 +26,9 @@ export default function DocumentDetailPage() {
             <p>VAT type: Standard</p>
             <p>Payment status: Paid</p>
           </div>
+          <div className="mt-6 rounded-xl border border-slate-200 bg-slate-50 p-4 text-xs text-slate-600">
+            BIR fields: RDO 043 · ATP-2025-001 · PTU-12345
+          </div>
         </div>
         <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
           <h3 className="text-sm font-semibold text-slate-900">Summary</h3>

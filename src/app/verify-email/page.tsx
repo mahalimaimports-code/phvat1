@@ -23,6 +23,9 @@ export default function VerifyEmailPage() {
           </div>
 
           <div className="mt-10 space-y-6">
+            <p className="text-xs font-semibold uppercase tracking-[0.25em] text-slate-400">
+              Secure access
+            </p>
             <h1 className="text-4xl font-semibold leading-tight text-slate-900">
               Verify your email to continue.
             </h1>

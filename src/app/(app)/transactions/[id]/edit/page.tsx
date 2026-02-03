@@ -7,6 +7,9 @@ export default function EditTransactionPage() {
       </section>
 
       <section className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
+        <div className="rounded-xl border border-amber-200 bg-amber-50 p-3 text-xs text-amber-700">
+          Editing is locked once a document is issued. Create a credit note for adjustments.
+        </div>
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
           <div className="space-y-2">
             <label className="text-xs font-semibold uppercase tracking-[0.15em] text-slate-500">

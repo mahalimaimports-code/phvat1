@@ -27,6 +27,9 @@ export default function NewItemPage() {
               <option>Zero-rated</option>
               <option>Exempt</option>
             </select>
+            <p className="text-xs text-slate-500">
+              VAT type controls line-item VAT behavior on documents.
+            </p>
           </div>
         </div>
         <div className="mt-6 flex items-center justify-between">

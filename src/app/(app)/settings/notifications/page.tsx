@@ -9,6 +9,9 @@ export default function NotificationsSettingsPage() {
       <section className="grid grid-cols-1 gap-6 lg:grid-cols-[2fr_1fr]">
         <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
           <h3 className="text-sm font-semibold text-slate-900">Messenger setup</h3>
+          <p className="mt-2 text-xs text-slate-500">
+            Send payment reminders and due notices directly to customers.
+          </p>
           <div className="mt-4 space-y-3">
             <div className="space-y-2">
               <label className="text-xs font-semibold uppercase tracking-[0.15em] text-slate-500">Page ID</label>

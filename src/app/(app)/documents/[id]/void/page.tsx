@@ -17,6 +17,9 @@ export default function VoidDocumentPage() {
             Reason for voiding
           </label>
           <textarea className="min-h-[120px] w-full rounded-xl border border-slate-200 px-4 py-3 text-sm" placeholder="Provide a reason" />
+          <p className="text-xs text-slate-500">
+            We will stamp the reason on the void record for compliance.
+          </p>
         </div>
         <div className="mt-6 flex items-center gap-3">
           <button className="rounded-xl border border-slate-200 px-4 py-2 text-sm font-semibold text-slate-600">

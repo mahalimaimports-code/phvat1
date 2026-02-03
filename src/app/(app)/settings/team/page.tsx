@@ -17,6 +17,9 @@ export default function TeamSettingsPage() {
       </section>
 
       <section className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
+        <div className="rounded-xl border border-slate-200 bg-slate-50 p-3 text-xs text-slate-600">
+          Owners can manage billing and compliance settings. Managers can issue documents.
+        </div>
         <div className="space-y-3">
           {members.map((member) => (
             <div key={member.email} className="flex items-center justify-between rounded-xl border border-slate-100 bg-slate-50 px-4 py-3">

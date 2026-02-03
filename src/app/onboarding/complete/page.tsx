@@ -6,7 +6,10 @@ export default function SetupCompletePage() {
           <div className="mx-auto grid h-16 w-16 place-items-center rounded-2xl bg-[#1a73e8] text-xl font-semibold text-white">
             PH
           </div>
-          <h1 className="mt-6 text-3xl font-semibold text-slate-900">
+          <p className="mt-6 text-xs font-semibold uppercase tracking-[0.25em] text-slate-400">
+            Setup complete
+          </p>
+          <h1 className="mt-3 text-3xl font-semibold text-slate-900">
             Your workspace is ready.
           </h1>
           <p className="mt-3 text-sm text-slate-600">

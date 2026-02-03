@@ -18,6 +18,7 @@ export default function CustomerDetailPage() {
 
       <section className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
         <h3 className="text-sm font-semibold text-slate-900">Recent documents</h3>
+        <p className="mt-2 text-xs text-slate-500">Outstanding balance: ₱6,200.00</p>
         <div className="mt-4 space-y-3">
           {[
             { id: "INV-1042", amount: "₱5,040.00", status: "Paid" },
@@ -26,7 +27,9 @@ export default function CustomerDetailPage() {
             <div key={doc.id} className="flex items-center justify-between rounded-xl border border-slate-100 bg-slate-50 px-4 py-3">
               <p className="text-sm font-semibold text-slate-900">{doc.id}</p>
               <p className="text-sm text-slate-600">{doc.amount}</p>
-              <p className="text-xs text-slate-500">{doc.status}</p>
+              <span className={`text-[11px] font-semibold ${doc.status === "Paid" ? "text-emerald-600" : "text-rose-600"}`}>
+                {doc.status}
+              </span>
             </div>
           ))}
         </div>

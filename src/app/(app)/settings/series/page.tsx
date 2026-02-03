@@ -7,6 +7,9 @@ export default function SeriesSettingsPage() {
       </section>
 
       <section className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
+        <div className="rounded-xl border border-slate-200 bg-slate-50 p-3 text-xs text-slate-600">
+          Changing series affects future documents only. Historical records remain unchanged.
+        </div>
         <div className="space-y-4">
           {["Invoice", "Official Receipt", "Credit Note"].map((label) => (
             <div key={label} className="rounded-xl border border-slate-100 bg-slate-50 px-4 py-3">

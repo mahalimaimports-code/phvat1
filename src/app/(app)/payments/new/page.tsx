@@ -8,6 +8,14 @@ export default function RecordPaymentPage() {
 
       <section className="grid grid-cols-1 gap-6 lg:grid-cols-[2fr_1fr]">
         <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
+          <div className="flex items-center justify-between">
+            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-slate-400">
+              Payment details
+            </p>
+            <span className="rounded-full border border-slate-200 bg-slate-50 px-3 py-1 text-xs font-semibold text-slate-600">
+              Draft
+            </span>
+          </div>
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
             <div className="space-y-2">
               <label className="text-xs font-semibold uppercase tracking-[0.15em] text-slate-500">Document</label>
@@ -37,6 +45,9 @@ export default function RecordPaymentPage() {
           <div className="mt-6 space-y-2">
             <label className="text-xs font-semibold uppercase tracking-[0.15em] text-slate-500">Reference</label>
             <input className="h-11 w-full rounded-xl border border-slate-200 px-4 text-sm" placeholder="Transfer reference" />
+          </div>
+          <div className="mt-4 rounded-xl border border-slate-200 bg-slate-50 p-3 text-xs text-slate-600">
+            Partial payments will reduce balance due automatically.
           </div>
         </div>
 

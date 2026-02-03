@@ -21,6 +21,9 @@ export default function CreditNotePage() {
               Reason
             </label>
             <textarea className="min-h-[120px] w-full rounded-xl border border-slate-200 px-4 py-3 text-sm" placeholder="Reason for credit" />
+            <p className="text-xs text-slate-500">
+              Credit notes are linked to the original document for audit integrity.
+            </p>
           </div>
         </div>
 

@@ -23,6 +23,9 @@ export default function BusinessProfilePage() {
           </div>
 
           <div className="mt-10 space-y-6">
+            <p className="text-xs font-semibold uppercase tracking-[0.25em] text-slate-400">
+              Business details
+            </p>
             <h1 className="text-4xl font-semibold leading-tight text-slate-900">
               Tell us about your business.
             </h1>
@@ -120,6 +123,9 @@ export default function BusinessProfilePage() {
                   className="h-11 w-full rounded-xl border border-slate-200 px-4 text-sm text-slate-900 outline-none transition focus:border-[#1a73e8] focus:ring-2 focus:ring-[#1a73e8]/20"
                   placeholder="Unit 3, 2nd Floor, Makati City"
                 />
+                <p className="text-xs text-slate-500">
+                  Use the address shown on your BIR registration.
+                </p>
               </div>
               <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
                 <div className="space-y-2">

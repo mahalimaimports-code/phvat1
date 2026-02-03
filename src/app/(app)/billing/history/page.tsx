@@ -12,7 +12,10 @@ export default function BillingHistoryPage() {
       </section>
 
       <section className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
-        <div className="space-y-3">
+        <div className="rounded-xl border border-slate-200 bg-slate-50 p-3 text-xs text-slate-600">
+          Receipts are available for every successful charge.
+        </div>
+        <div className="mt-4 space-y-3">
           {history.map((item) => (
             <div key={item.id} className="flex items-center justify-between rounded-xl border border-slate-100 bg-slate-50 px-4 py-3">
               <div>

@@ -1,3 +1,6 @@
+import StatCard from "@/components/ui/stat-card";
+import Skeleton from "@/components/ui/skeleton";
+
 const stats = [
   { label: "Total sales (MTD)", value: "₱128,450.00", note: "+12.4% vs last month" },
   { label: "VAT payable", value: "₱12,845.00", note: "Next filing: Mar 31" },
@@ -12,6 +15,8 @@ const recent = [
 ];
 
 export default function DashboardPage() {
+  const isLoading = false;
+
   return (
     <div className="space-y-8">
       <section className="flex flex-col gap-3">
@@ -22,15 +27,13 @@ export default function DashboardPage() {
       </section>
 
       <section className="grid grid-cols-1 gap-4 lg:grid-cols-4">
-        {stats.map((stat) => (
-          <div key={stat.label} className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
-            <p className="text-xs font-semibold uppercase tracking-[0.15em] text-slate-400">
-              {stat.label}
-            </p>
-            <p className="mt-3 text-2xl font-semibold text-slate-900">{stat.value}</p>
-            <p className="mt-2 text-xs text-slate-500">{stat.note}</p>
-          </div>
-        ))}
+        {isLoading
+          ? Array.from({ length: 4 }).map((_, index) => (
+              <Skeleton key={index} className="h-28" />
+            ))
+          : stats.map((stat) => (
+              <StatCard key={stat.label} label={stat.label} value={stat.value} note={stat.note} />
+            ))}
       </section>
 
       <section className="grid grid-cols-1 gap-4 lg:grid-cols-[2fr_1fr]">
@@ -39,8 +42,14 @@ export default function DashboardPage() {
             <h3 className="text-lg font-semibold text-slate-900">Sales trend</h3>
             <button className="text-xs font-semibold text-[#1a73e8]">View report</button>
           </div>
-          <div className="mt-6 h-52 rounded-xl border border-dashed border-slate-200 bg-slate-50" />
-          <p className="mt-3 text-xs text-slate-500">Placeholder for chart.</p>
+          {isLoading ? (
+            <Skeleton className="mt-6 h-52" />
+          ) : (
+            <>
+              <div className="mt-6 h-52 rounded-xl border border-dashed border-slate-200 bg-slate-50" />
+              <p className="mt-3 text-xs text-slate-500">Placeholder for chart.</p>
+            </>
+          )}
         </div>
         <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
           <h3 className="text-lg font-semibold text-slate-900">Trial status</h3>
@@ -60,18 +69,22 @@ export default function DashboardPage() {
           <button className="text-xs font-semibold text-[#1a73e8]">See all</button>
         </div>
         <div className="mt-4 space-y-3">
-          {recent.map((item) => (
-            <div key={item.id} className="flex items-center justify-between rounded-xl border border-slate-100 bg-slate-50 px-4 py-3">
-              <div>
-                <p className="text-sm font-semibold text-slate-900">{item.id}</p>
-                <p className="text-xs text-slate-500">{item.customer}</p>
-              </div>
-              <div className="text-right">
-                <p className="text-sm font-semibold text-slate-900">{item.amount}</p>
-                <p className="text-xs text-slate-500">{item.status}</p>
-              </div>
-            </div>
-          ))}
+          {isLoading
+            ? Array.from({ length: 3 }).map((_, index) => (
+                <Skeleton key={index} className="h-16" />
+              ))
+            : recent.map((item) => (
+                <div key={item.id} className="flex items-center justify-between rounded-xl border border-slate-100 bg-slate-50 px-4 py-3">
+                  <div>
+                    <p className="text-sm font-semibold text-slate-900">{item.id}</p>
+                    <p className="text-xs text-slate-500">{item.customer}</p>
+                  </div>
+                  <div className="text-right">
+                    <p className="text-sm font-semibold text-slate-900">{item.amount}</p>
+                    <p className="text-xs text-slate-500">{item.status}</p>
+                  </div>
+                </div>
+              ))}
         </div>
       </section>
     </div>

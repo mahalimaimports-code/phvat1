@@ -24,6 +24,7 @@ export default function TransactionDetailPage() {
       <section className="grid grid-cols-1 gap-6 lg:grid-cols-[2fr_1fr]">
         <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
           <h3 className="text-sm font-semibold text-slate-900">Line items</h3>
+          <p className="mt-2 text-xs text-slate-500">Linked document: INV-1042</p>
           <div className="mt-4 space-y-3">
             {lineItems.map((item) => (
               <div key={item.name} className="flex items-center justify-between rounded-xl border border-slate-100 bg-slate-50 px-4 py-3">
@@ -53,7 +54,7 @@ export default function TransactionDetailPage() {
             </div>
           </div>
           <div className="mt-6 rounded-xl border border-slate-200 bg-slate-50 p-4 text-xs text-slate-600">
-            Customer: Luna Retail
+            Customer: Luna Retail · Payment status: Paid
           </div>
         </div>
       </section>

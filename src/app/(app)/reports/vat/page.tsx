@@ -12,6 +12,9 @@ export default function VatSummaryPage() {
           <input className="h-10 rounded-xl border border-slate-200 px-3 text-sm" defaultValue="Feb 3, 2026" />
           <button className="h-10 rounded-xl bg-[#1a73e8] px-4 text-sm font-semibold text-white">Run</button>
         </div>
+        <div className="mt-4 rounded-xl border border-slate-200 bg-slate-50 p-3 text-xs text-slate-600">
+          VAT totals follow BIR definitions and match document breakdowns.
+        </div>
         <div className="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-3">
           {["VATable", "Zero-rated", "Exempt"].map((label) => (
             <div key={label} className="rounded-xl border border-slate-200 bg-slate-50 p-4">

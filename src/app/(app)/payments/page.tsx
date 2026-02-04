@@ -1,10 +1,9 @@
 import EmptyState from "@/components/ui/empty-state";
 import Skeleton from "@/components/ui/skeleton";
+import { payments } from "@/data/demo";
 
-const payments = [
-  { id: "PAY-0091", doc: "INV-1042", amount: "₱5,040.00", method: "Bank Transfer", date: "Feb 3, 2026" },
-  { id: "PAY-0090", doc: "OR-5821", amount: "₱1,250.00", method: "Cash", date: "Feb 2, 2026" },
-];
+const formatCurrency = (value: number) =>
+  new Intl.NumberFormat("en-PH", { style: "currency", currency: "PHP" }).format(value);
 
 const methodStyles: Record<string, string> = {
   "Bank Transfer": "bg-blue-50 text-blue-700 border-blue-200",
@@ -62,7 +61,7 @@ export default function PaymentsPage() {
                   <p className="text-xs text-slate-500">{pay.doc}</p>
                 </div>
                 <div>
-                  <p className="text-sm font-semibold text-slate-900">{pay.amount}</p>
+                  <p className="text-sm font-semibold text-slate-900">{formatCurrency(pay.amount)}</p>
                   <span
                     className={`mt-2 inline-flex items-center rounded-full border px-2.5 py-1 text-[11px] font-semibold ${methodStyles[pay.method] ?? "border-slate-200 text-slate-500"}`}
                   >

@@ -1,17 +1,14 @@
 import EmptyState from "@/components/ui/empty-state";
 import Skeleton from "@/components/ui/skeleton";
+import { customers } from "@/data/demo";
 
-const customers = [
-  { id: "CUST-001", name: "Luna Retail", tin: "123-456-789-000", balance: "₱6,200.00" },
-  { id: "CUST-002", name: "SariHub", tin: "—", balance: "₱1,250.00" },
-  { id: "CUST-003", name: "Bituin Co.", tin: "987-654-321-000", balance: "₱9,800.00" },
-];
+const formatCurrency = (value: number) =>
+  new Intl.NumberFormat("en-PH", { style: "currency", currency: "PHP" }).format(value);
 
-const balanceStyles: Record<string, string> = {
-  "₱6,200.00": "bg-rose-50 text-rose-700 border-rose-200",
-  "₱1,250.00": "bg-amber-50 text-amber-700 border-amber-200",
-  "₱9,800.00": "bg-rose-50 text-rose-700 border-rose-200",
-};
+const balanceStyles = (balance: number) =>
+  balance > 5000
+    ? "bg-rose-50 text-rose-700 border-rose-200"
+    : "bg-amber-50 text-amber-700 border-amber-200";
 
 export default function CustomersPage() {
   const isLoading = false;
@@ -59,12 +56,14 @@ export default function CustomersPage() {
               <div key={cust.id} className="flex flex-wrap items-center justify-between gap-4 rounded-xl border border-slate-100 bg-slate-50 px-4 py-3">
                 <div>
                   <p className="text-sm font-semibold text-slate-900">{cust.name}</p>
-                  <p className="text-xs text-slate-500">{cust.id} · TIN: {cust.tin}</p>
+                  <p className="text-xs text-slate-500">
+                    {cust.id} · TIN: {cust.tin ?? "N/A"}
+                  </p>
                 </div>
                 <span
-                  className={`inline-flex items-center rounded-full border px-2.5 py-1 text-[11px] font-semibold ${balanceStyles[cust.balance] ?? "border-slate-200 text-slate-500"}`}
+                  className={`inline-flex items-center rounded-full border px-2.5 py-1 text-[11px] font-semibold ${balanceStyles(cust.balance)}`}
                 >
-                  {cust.balance} due
+                  {formatCurrency(cust.balance)} due
                 </span>
                 <a href={`/customers/${cust.id}`} className="text-xs font-semibold text-[#1a73e8]">View</a>
               </div>

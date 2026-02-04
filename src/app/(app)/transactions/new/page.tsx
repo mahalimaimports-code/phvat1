@@ -1,3 +1,8 @@
+import { customers, items } from "@/data/demo";
+
+const formatCurrency = (value: number) =>
+  new Intl.NumberFormat("en-PH", { style: "currency", currency: "PHP" }).format(value);
+
 export default function NewTransactionPage() {
   return (
     <div className="space-y-6">
@@ -24,9 +29,11 @@ export default function NewTransactionPage() {
                 Customer
               </label>
               <select className="h-11 w-full rounded-xl border border-slate-200 bg-white px-4 text-sm">
-                <option>Luna Retail</option>
-                <option>SariHub</option>
-                <option>Bituin Co.</option>
+                {customers.map((customer) => (
+                  <option key={customer.id}>
+                    {customer.name}
+                  </option>
+                ))}
               </select>
             </div>
             <div className="space-y-2">
@@ -42,17 +49,14 @@ export default function NewTransactionPage() {
             <div className="rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 text-xs text-slate-600">
               VAT classification follows the item VAT type and business VAT status.
             </div>
-            {[
-              { item: "Social Media Ads", qty: "1", price: "₱4,000.00" },
-              { item: "Service Fee", qty: "1", price: "₱500.00" },
-            ].map((line) => (
-              <div key={line.item} className="grid grid-cols-1 gap-3 rounded-xl border border-slate-100 bg-slate-50 px-4 py-3 sm:grid-cols-4">
+            {items.slice(0, 2).map((line) => (
+              <div key={line.id} className="grid grid-cols-1 gap-3 rounded-xl border border-slate-100 bg-slate-50 px-4 py-3 sm:grid-cols-4">
                 <div className="sm:col-span-2">
-                  <p className="text-sm font-semibold text-slate-900">{line.item}</p>
-                  <p className="text-xs text-slate-500">VAT: Standard</p>
+                  <p className="text-sm font-semibold text-slate-900">{line.name}</p>
+                  <p className="text-xs text-slate-500">VAT: {line.vatType}</p>
                 </div>
-                <p className="text-sm text-slate-600">Qty: {line.qty}</p>
-                <p className="text-sm text-slate-900">{line.price}</p>
+                <p className="text-sm text-slate-600">Qty: 1</p>
+                <p className="text-sm text-slate-900">{formatCurrency(line.price)}</p>
               </div>
             ))}
             <button className="text-xs font-semibold text-[#1a73e8]">+ Add item</button>

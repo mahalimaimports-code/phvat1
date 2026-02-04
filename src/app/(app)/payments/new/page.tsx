@@ -1,3 +1,5 @@
+import { documents } from "@/data/demo";
+
 export default function RecordPaymentPage() {
   return (
     <div className="space-y-6">
@@ -20,8 +22,11 @@ export default function RecordPaymentPage() {
             <div className="space-y-2">
               <label className="text-xs font-semibold uppercase tracking-[0.15em] text-slate-500">Document</label>
               <select className="h-11 w-full rounded-xl border border-slate-200 bg-white px-4 text-sm">
-                <option>INV-1042 · Luna Retail</option>
-                <option>INV-1041 · Bituin Co.</option>
+                {documents.map((doc) => (
+                  <option key={doc.id}>
+                    {doc.id} · {doc.customer}
+                  </option>
+                ))}
               </select>
             </div>
             <div className="space-y-2">

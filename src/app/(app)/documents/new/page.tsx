@@ -1,3 +1,8 @@
+import { documents, transactions } from "@/data/demo";
+
+const formatCurrency = (value: number) =>
+  new Intl.NumberFormat("en-PH", { style: "currency", currency: "PHP" }).format(value);
+
 export default function CreateDocumentPage() {
   return (
     <div className="space-y-6">
@@ -35,8 +40,11 @@ export default function CreateDocumentPage() {
                 Transaction
               </label>
               <select className="h-11 w-full rounded-xl border border-slate-200 bg-white px-4 text-sm">
-                <option>TRX-2026-0142 · Luna Retail</option>
-                <option>TRX-2026-0141 · Bituin Co.</option>
+                {transactions.map((trx) => (
+                  <option key={trx.id}>
+                    {trx.id} · {trx.customer}
+                  </option>
+                ))}
               </select>
             </div>
           </div>
@@ -44,7 +52,7 @@ export default function CreateDocumentPage() {
           <div className="mt-6 rounded-2xl border border-slate-100 bg-slate-50 p-4">
             <p className="text-sm font-semibold text-slate-900">Preview summary</p>
             <div className="mt-3 text-xs text-slate-600">
-              VATable sales: ₱4,500.00 · VAT: ₱540.00 · Total: ₱5,040.00
+              VATable sales: {formatCurrency(4500)} · VAT: {formatCurrency(540)} · Total: {formatCurrency(5040)}
             </div>
           </div>
         </div>
@@ -54,11 +62,11 @@ export default function CreateDocumentPage() {
           <div className="mt-4 space-y-2 text-sm text-slate-600">
             <div className="flex justify-between">
               <span>Series</span>
-              <span>INV-</span>
+              <span>{documents[0].series}</span>
             </div>
             <div className="flex justify-between">
               <span>Next number</span>
-              <span>1043</span>
+              <span>{documents[0].number + 1}</span>
             </div>
           </div>
           <div className="mt-4 rounded-xl border border-slate-200 bg-slate-50 p-3 text-xs text-slate-600">

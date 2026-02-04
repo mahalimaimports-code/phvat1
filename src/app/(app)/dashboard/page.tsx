@@ -1,18 +1,9 @@
 import StatCard from "@/components/ui/stat-card";
 import Skeleton from "@/components/ui/skeleton";
+import { dashboardStats, recentActivity } from "@/data/demo";
 
-const stats = [
-  { label: "Total sales (MTD)", value: "₱128,450.00", note: "+12.4% vs last month" },
-  { label: "VAT payable", value: "₱12,845.00", note: "Next filing: Mar 31" },
-  { label: "Outstanding balance", value: "₱32,100.00", note: "8 invoices unpaid" },
-  { label: "Documents issued", value: "142", note: "Invoices + ORs" },
-];
-
-const recent = [
-  { id: "INV-1042", customer: "Luna Retail", amount: "₱4,500.00", status: "Paid" },
-  { id: "OR-5821", customer: "SariHub", amount: "₱1,250.00", status: "Pending" },
-  { id: "INV-1041", customer: "Bituin Co.", amount: "₱9,800.00", status: "Overdue" },
-];
+const formatCurrency = (value: number) =>
+  new Intl.NumberFormat("en-PH", { style: "currency", currency: "PHP" }).format(value);
 
 export default function DashboardPage() {
   const isLoading = false;
@@ -31,8 +22,13 @@ export default function DashboardPage() {
           ? Array.from({ length: 4 }).map((_, index) => (
               <Skeleton key={index} className="h-28" />
             ))
-          : stats.map((stat) => (
-              <StatCard key={stat.label} label={stat.label} value={stat.value} note={stat.note} />
+          : dashboardStats.map((stat) => (
+              <StatCard
+                key={stat.label}
+                label={stat.label}
+                value={stat.label === "Documents issued" ? String(stat.value) : formatCurrency(stat.value)}
+                note={stat.note}
+              />
             ))}
       </section>
 
@@ -73,14 +69,14 @@ export default function DashboardPage() {
             ? Array.from({ length: 3 }).map((_, index) => (
                 <Skeleton key={index} className="h-16" />
               ))
-            : recent.map((item) => (
+            : recentActivity.map((item) => (
                 <div key={item.id} className="flex items-center justify-between rounded-xl border border-slate-100 bg-slate-50 px-4 py-3">
                   <div>
                     <p className="text-sm font-semibold text-slate-900">{item.id}</p>
                     <p className="text-xs text-slate-500">{item.customer}</p>
                   </div>
                   <div className="text-right">
-                    <p className="text-sm font-semibold text-slate-900">{item.amount}</p>
+                    <p className="text-sm font-semibold text-slate-900">{formatCurrency(item.amount)}</p>
                     <p className="text-xs text-slate-500">{item.status}</p>
                   </div>
                 </div>

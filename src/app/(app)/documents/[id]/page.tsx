@@ -1,10 +1,18 @@
+import { businessProfile, documents } from "@/data/demo";
+
+const document = documents[0];
+const formatCurrency = (value: number) =>
+  new Intl.NumberFormat("en-PH", { style: "currency", currency: "PHP" }).format(value);
+
 export default function DocumentDetailPage() {
   return (
     <div className="space-y-6">
       <section className="flex flex-wrap items-start justify-between gap-4">
         <div>
-          <h2 className="text-2xl font-semibold text-slate-900">INV-1042</h2>
-          <p className="text-sm text-slate-600">Invoice · Issued Feb 3, 2026 · Paid</p>
+          <h2 className="text-2xl font-semibold text-slate-900">{document.id}</h2>
+          <p className="text-sm text-slate-600">
+            {document.type} · Issued {document.issuedAt} · {document.status}
+          </p>
         </div>
         <div className="flex gap-3">
           <a href="/documents/INV-1042/credit-note" className="rounded-xl border border-slate-200 px-4 py-2 text-sm font-semibold text-slate-600">
@@ -20,14 +28,14 @@ export default function DocumentDetailPage() {
         <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
           <h3 className="text-sm font-semibold text-slate-900">Document details</h3>
           <div className="mt-4 space-y-2 text-sm text-slate-600">
-            <p>Customer: Luna Retail</p>
-            <p>Series: INV-</p>
-            <p>Number: 1042</p>
-            <p>VAT type: Standard</p>
-            <p>Payment status: Paid</p>
+            <p>Customer: {document.customer}</p>
+            <p>Series: {document.series}</p>
+            <p>Number: {document.number}</p>
+            <p>VAT type: {document.vatType}</p>
+            <p>Payment status: {document.status}</p>
           </div>
           <div className="mt-6 rounded-xl border border-slate-200 bg-slate-50 p-4 text-xs text-slate-600">
-            BIR fields: RDO 043 · ATP-2025-001 · PTU-12345
+            BIR fields: RDO {businessProfile.rdo} · {businessProfile.atp} · {businessProfile.ptu}
           </div>
         </div>
         <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
@@ -35,15 +43,15 @@ export default function DocumentDetailPage() {
           <div className="mt-4 space-y-2 text-sm text-slate-600">
             <div className="flex justify-between">
               <span>Subtotal</span>
-              <span>₱4,500.00</span>
+              <span>{formatCurrency(4500)}</span>
             </div>
             <div className="flex justify-between">
               <span>VAT</span>
-              <span>₱540.00</span>
+              <span>{formatCurrency(540)}</span>
             </div>
             <div className="flex justify-between font-semibold text-slate-900">
               <span>Total</span>
-              <span>₱5,040.00</span>
+              <span>{formatCurrency(document.amount)}</span>
             </div>
           </div>
           <button className="mt-6 h-10 w-full rounded-xl border border-slate-200 text-sm font-semibold text-slate-600">

@@ -1,11 +1,9 @@
 import EmptyState from "@/components/ui/empty-state";
 import Skeleton from "@/components/ui/skeleton";
+import { items } from "@/data/demo";
 
-const items = [
-  { id: "ITEM-001", name: "Social Media Ads", price: "₱4,000.00", vat: "Standard" },
-  { id: "ITEM-002", name: "Service Fee", price: "₱500.00", vat: "Standard" },
-  { id: "ITEM-003", name: "Consulting", price: "₱2,500.00", vat: "Zero-rated" },
-];
+const formatCurrency = (value: number) =>
+  new Intl.NumberFormat("en-PH", { style: "currency", currency: "PHP" }).format(value);
 
 const vatStyles: Record<string, string> = {
   Standard: "bg-emerald-50 text-emerald-700 border-emerald-200",
@@ -63,13 +61,13 @@ export default function ItemsPage() {
                   <div className="mt-2 flex items-center gap-2 text-xs text-slate-500">
                     <span>{item.id}</span>
                     <span
-                      className={`inline-flex items-center rounded-full border px-2.5 py-1 text-[11px] font-semibold ${vatStyles[item.vat] ?? "border-slate-200 text-slate-500"}`}
+                      className={`inline-flex items-center rounded-full border px-2.5 py-1 text-[11px] font-semibold ${vatStyles[item.vatType] ?? "border-slate-200 text-slate-500"}`}
                     >
-                      {item.vat}
+                      {item.vatType}
                     </span>
                   </div>
                 </div>
-                <p className="text-sm font-semibold text-slate-900">{item.price}</p>
+                <p className="text-sm font-semibold text-slate-900">{formatCurrency(item.price)}</p>
                 <a href={`/items/${item.id}`} className="text-xs font-semibold text-[#1a73e8]">View</a>
               </div>
             ))

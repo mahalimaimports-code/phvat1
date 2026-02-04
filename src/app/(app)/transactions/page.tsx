@@ -1,32 +1,9 @@
 import EmptyState from "@/components/ui/empty-state";
 import Skeleton from "@/components/ui/skeleton";
+import { transactions } from "@/data/demo";
 
-const rows = [
-  {
-    id: "TRX-2026-0142",
-    date: "Feb 3, 2026",
-    customer: "Luna Retail",
-    amount: "₱4,500.00",
-    vat: "Standard",
-    status: "Issued",
-  },
-  {
-    id: "TRX-2026-0141",
-    date: "Feb 2, 2026",
-    customer: "Bituin Co.",
-    amount: "₱9,800.00",
-    vat: "Zero-rated",
-    status: "Draft",
-  },
-  {
-    id: "TRX-2026-0140",
-    date: "Feb 2, 2026",
-    customer: "SariHub",
-    amount: "₱1,250.00",
-    vat: "Exempt",
-    status: "Issued",
-  },
-];
+const formatCurrency = (value: number) =>
+  new Intl.NumberFormat("en-PH", { style: "currency", currency: "PHP" }).format(value);
 
 const statusStyles: Record<string, string> = {
   Issued: "bg-emerald-50 text-emerald-700 border-emerald-200",
@@ -82,14 +59,14 @@ export default function TransactionsPage() {
             Array.from({ length: 4 }).map((_, index) => (
               <Skeleton key={index} className="h-16" />
             ))
-          ) : rows.length === 0 ? (
+          ) : transactions.length === 0 ? (
             <EmptyState
               title="No transactions yet"
               description="Create your first transaction to start tracking VAT and invoices."
               action={{ label: "New transaction", href: "/transactions/new" }}
             />
           ) : (
-            rows.map((row) => (
+            transactions.map((row) => (
               <div
                 key={row.id}
                 className="flex flex-wrap items-center justify-between gap-4 rounded-xl border border-slate-100 bg-slate-50 px-4 py-3"
@@ -100,10 +77,10 @@ export default function TransactionsPage() {
                 </div>
                 <div>
                   <p className="text-sm font-semibold text-slate-900">{row.customer}</p>
-                  <p className="text-xs text-slate-500">VAT: {row.vat}</p>
+                  <p className="text-xs text-slate-500">VAT: {row.vatType}</p>
                 </div>
                 <div className="text-right">
-                  <p className="text-sm font-semibold text-slate-900">{row.amount}</p>
+                  <p className="text-sm font-semibold text-slate-900">{formatCurrency(row.amount)}</p>
                   <span
                     className={`mt-2 inline-flex items-center rounded-full border px-2.5 py-1 text-[11px] font-semibold ${statusStyles[row.status] ?? "border-slate-200 text-slate-500"}`}
                   >

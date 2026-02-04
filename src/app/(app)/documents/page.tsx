@@ -1,29 +1,9 @@
 import EmptyState from "@/components/ui/empty-state";
 import Skeleton from "@/components/ui/skeleton";
+import { documents } from "@/data/demo";
 
-const docs = [
-  {
-    id: "INV-1042",
-    type: "Invoice",
-    customer: "Luna Retail",
-    amount: "₱5,040.00",
-    status: "Paid",
-  },
-  {
-    id: "OR-5821",
-    type: "Official Receipt",
-    customer: "SariHub",
-    amount: "₱1,250.00",
-    status: "Pending",
-  },
-  {
-    id: "INV-1041",
-    type: "Invoice",
-    customer: "Bituin Co.",
-    amount: "₱9,800.00",
-    status: "Overdue",
-  },
-];
+const formatCurrency = (value: number) =>
+  new Intl.NumberFormat("en-PH", { style: "currency", currency: "PHP" }).format(value);
 
 const statusStyles: Record<string, string> = {
   Paid: "bg-emerald-50 text-emerald-700 border-emerald-200",
@@ -81,14 +61,14 @@ export default function DocumentsPage() {
             Array.from({ length: 4 }).map((_, index) => (
               <Skeleton key={index} className="h-16" />
             ))
-          ) : docs.length === 0 ? (
+          ) : documents.length === 0 ? (
             <EmptyState
               title="No documents yet"
               description="Issue your first invoice or official receipt from a transaction."
               action={{ label: "Create document", href: "/documents/new" }}
             />
           ) : (
-            docs.map((doc) => (
+            documents.map((doc) => (
               <div
                 key={doc.id}
                 className="flex flex-wrap items-center justify-between gap-4 rounded-xl border border-slate-100 bg-slate-50 px-4 py-3"
@@ -105,7 +85,7 @@ export default function DocumentsPage() {
                     {doc.status}
                   </span>
                 </div>
-                <p className="text-sm font-semibold text-slate-900">{doc.amount}</p>
+                <p className="text-sm font-semibold text-slate-900">{formatCurrency(doc.amount)}</p>
                 <a href={`/documents/${doc.id}`} className="text-xs font-semibold text-[#1a73e8]">
                   View
                 </a>

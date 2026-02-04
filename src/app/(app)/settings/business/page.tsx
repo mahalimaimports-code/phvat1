@@ -1,3 +1,5 @@
+import { businessProfile } from "@/data/demo";
+
 export default function BusinessSettingsPage() {
   return (
     <div className="space-y-6">
@@ -13,28 +15,28 @@ export default function BusinessSettingsPage() {
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
           <div className="space-y-2">
             <label className="text-xs font-semibold uppercase tracking-[0.15em] text-slate-500">Business name</label>
-            <input className="h-11 w-full rounded-xl border border-slate-200 px-4 text-sm" defaultValue="ABC Online Trading" />
+            <input className="h-11 w-full rounded-xl border border-slate-200 px-4 text-sm" defaultValue={businessProfile.name} />
           </div>
           <div className="space-y-2">
             <label className="text-xs font-semibold uppercase tracking-[0.15em] text-slate-500">TIN</label>
-            <input className="h-11 w-full rounded-xl border border-slate-200 px-4 text-sm" defaultValue="000-000-000-000" />
+            <input className="h-11 w-full rounded-xl border border-slate-200 px-4 text-sm" defaultValue={businessProfile.tin} />
           </div>
           <div className="space-y-2">
             <label className="text-xs font-semibold uppercase tracking-[0.15em] text-slate-500">RDO Code</label>
-            <input className="h-11 w-full rounded-xl border border-slate-200 px-4 text-sm" defaultValue="043" />
+            <input className="h-11 w-full rounded-xl border border-slate-200 px-4 text-sm" defaultValue={businessProfile.rdo} />
           </div>
           <div className="space-y-2">
             <label className="text-xs font-semibold uppercase tracking-[0.15em] text-slate-500">ATP Number</label>
-            <input className="h-11 w-full rounded-xl border border-slate-200 px-4 text-sm" defaultValue="ATP-2025-001" />
+            <input className="h-11 w-full rounded-xl border border-slate-200 px-4 text-sm" defaultValue={businessProfile.atp} />
           </div>
           <div className="space-y-2">
             <label className="text-xs font-semibold uppercase tracking-[0.15em] text-slate-500">PTU Number</label>
-            <input className="h-11 w-full rounded-xl border border-slate-200 px-4 text-sm" defaultValue="PTU-12345" />
+            <input className="h-11 w-full rounded-xl border border-slate-200 px-4 text-sm" defaultValue={businessProfile.ptu} />
           </div>
           <div className="space-y-2">
             <label className="text-xs font-semibold uppercase tracking-[0.15em] text-slate-500">VAT Status</label>
             <select className="h-11 w-full rounded-xl border border-slate-200 bg-white px-4 text-sm">
-              <option>VAT-registered</option>
+              <option>{businessProfile.vatStatus}</option>
               <option>Non-VAT</option>
             </select>
           </div>

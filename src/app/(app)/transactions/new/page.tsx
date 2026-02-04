@@ -50,13 +50,20 @@ export default function NewTransactionPage() {
               VAT classification follows the item VAT type and business VAT status.
             </div>
             {items.slice(0, 2).map((line) => (
-              <div key={line.id} className="grid grid-cols-1 gap-3 rounded-xl border border-slate-100 bg-slate-50 px-4 py-3 sm:grid-cols-4">
+              <div key={line.id} className="grid grid-cols-1 gap-3 rounded-xl border border-slate-100 bg-slate-50 px-4 py-3 sm:grid-cols-5">
                 <div className="sm:col-span-2">
                   <p className="text-sm font-semibold text-slate-900">{line.name}</p>
-                  <p className="text-xs text-slate-500">VAT: {line.vatType}</p>
+                  <p className="text-xs text-slate-500">SKU: {line.sku}</p>
                 </div>
                 <p className="text-sm text-slate-600">Qty: 1</p>
                 <p className="text-sm text-slate-900">{formatCurrency(line.price)}</p>
+                <div className="text-sm">
+                  <select className="h-9 w-full rounded-lg border border-slate-200 bg-white px-2 text-xs">
+                    <option>VATable (12%)</option>
+                    <option>Zero-rated (0%)</option>
+                    <option>VAT-exempt</option>
+                  </select>
+                </div>
               </div>
             ))}
             <button className="text-xs font-semibold text-[#1a73e8]">+ Add item</button>
@@ -67,12 +74,20 @@ export default function NewTransactionPage() {
           <h3 className="text-sm font-semibold text-slate-900">Summary</h3>
           <div className="mt-4 space-y-2 text-sm text-slate-600">
             <div className="flex justify-between">
-              <span>Subtotal</span>
+              <span>VATable sales (12%)</span>
               <span>₱4,500.00</span>
             </div>
             <div className="flex justify-between">
-              <span>VAT (12%)</span>
+              <span>VAT amount</span>
               <span>₱540.00</span>
+            </div>
+            <div className="flex justify-between">
+              <span>Zero-rated sales (0%)</span>
+              <span>₱0.00</span>
+            </div>
+            <div className="flex justify-between">
+              <span>VAT-exempt sales</span>
+              <span>₱0.00</span>
             </div>
             <div className="flex justify-between">
               <span>Withholding</span>

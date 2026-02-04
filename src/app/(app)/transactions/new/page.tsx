@@ -1,9 +1,82 @@
-import { customers, items } from "@/data/demo";
+"use client";
+
+import { useMemo, useState } from "react";
+import { customers, items as catalogItems } from "@/data/demo";
 
 const formatCurrency = (value: number) =>
   new Intl.NumberFormat("en-PH", { style: "currency", currency: "PHP" }).format(value);
 
+type VatType = "VATable (12%)" | "Zero-rated (0%)" | "VAT-exempt";
+
+type LineItem = {
+  id: string;
+  name: string;
+  sku: string;
+  price: number;
+  qty: number;
+  vatType: VatType;
+};
+
+const VAT_RATE = 0.12;
+
 export default function NewTransactionPage() {
+  const [lineItems, setLineItems] = useState<LineItem[]>(
+    catalogItems.slice(0, 2).map((item) => ({
+      id: item.id,
+      name: item.name,
+      sku: item.sku,
+      price: item.price,
+      qty: 1,
+      vatType: "VATable (12%)",
+    }))
+  );
+
+  const addLineItem = () => {
+    const next = catalogItems[lineItems.length % catalogItems.length];
+    setLineItems((prev) => [
+      ...prev,
+      {
+        id: `${next.id}-${prev.length + 1}`,
+        name: next.name,
+        sku: next.sku,
+        price: next.price,
+        qty: 1,
+        vatType: "VATable (12%)",
+      },
+    ]);
+  };
+
+  const removeLineItem = (id: string) => {
+    setLineItems((prev) => prev.filter((item) => item.id !== id));
+  };
+
+  const updateQty = (id: string, qty: number) => {
+    setLineItems((prev) =>
+      prev.map((item) => (item.id === id ? { ...item, qty: Math.max(1, qty) } : item))
+    );
+  };
+
+  const updateVatType = (id: string, vatType: VatType) => {
+    setLineItems((prev) => prev.map((item) => (item.id === id ? { ...item, vatType } : item)));
+  };
+
+  const summary = useMemo(() => {
+    let vatable = 0;
+    let zeroRated = 0;
+    let exempt = 0;
+
+    lineItems.forEach((item) => {
+      const lineTotal = item.price * item.qty;
+      if (item.vatType === "VATable (12%)") vatable += lineTotal;
+      if (item.vatType === "Zero-rated (0%)") zeroRated += lineTotal;
+      if (item.vatType === "VAT-exempt") exempt += lineTotal;
+    });
+
+    const vatAmount = vatable * VAT_RATE;
+    const total = vatable + zeroRated + exempt + vatAmount;
+
+    return { vatable, zeroRated, exempt, vatAmount, total };
+  }, [lineItems]);
   return (
     <div className="space-y-6">
       <section>
@@ -49,24 +122,59 @@ export default function NewTransactionPage() {
             <div className="rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 text-xs text-slate-600">
               VAT classification follows the item VAT type and business VAT status.
             </div>
-            {items.slice(0, 2).map((line) => (
-              <div key={line.id} className="grid grid-cols-1 gap-3 rounded-xl border border-slate-100 bg-slate-50 px-4 py-3 sm:grid-cols-5">
+            {lineItems.map((line) => (
+              <div key={line.id} className="grid grid-cols-1 gap-3 rounded-xl border border-slate-100 bg-slate-50 px-4 py-3 sm:grid-cols-6">
                 <div className="sm:col-span-2">
                   <p className="text-sm font-semibold text-slate-900">{line.name}</p>
                   <p className="text-xs text-slate-500">SKU: {line.sku}</p>
                 </div>
-                <p className="text-sm text-slate-600">Qty: 1</p>
+                <div className="flex items-center gap-2">
+                  <button
+                    type="button"
+                    className="h-8 w-8 rounded-lg border border-slate-200 bg-white text-sm font-semibold text-slate-600"
+                    onClick={() => updateQty(line.id, line.qty - 1)}
+                  >
+                    -
+                  </button>
+                  <span className="text-sm font-semibold text-slate-900">{line.qty}</span>
+                  <button
+                    type="button"
+                    className="h-8 w-8 rounded-lg border border-slate-200 bg-white text-sm font-semibold text-slate-600"
+                    onClick={() => updateQty(line.id, line.qty + 1)}
+                  >
+                    +
+                  </button>
+                </div>
                 <p className="text-sm text-slate-900">{formatCurrency(line.price)}</p>
                 <div className="text-sm">
-                  <select className="h-9 w-full rounded-lg border border-slate-200 bg-white px-2 text-xs">
-                    <option>VATable (12%)</option>
-                    <option>Zero-rated (0%)</option>
-                    <option>VAT-exempt</option>
+                  <select
+                    className="h-9 w-full rounded-lg border border-slate-200 bg-white px-2 text-xs"
+                    value={line.vatType}
+                    onChange={(event) => updateVatType(line.id, event.target.value as VatType)}
+                  >
+                    <option value="VATable (12%)">VATable (12%)</option>
+                    <option value="Zero-rated (0%)">Zero-rated (0%)</option>
+                    <option value="VAT-exempt">VAT-exempt</option>
                   </select>
+                </div>
+                <div className="flex items-center justify-end">
+                  <button
+                    type="button"
+                    onClick={() => removeLineItem(line.id)}
+                    className="text-xs font-semibold text-rose-600"
+                  >
+                    Remove
+                  </button>
                 </div>
               </div>
             ))}
-            <button className="text-xs font-semibold text-[#1a73e8]">+ Add item</button>
+            <button
+              type="button"
+              onClick={addLineItem}
+              className="text-xs font-semibold text-[#1a73e8]"
+            >
+              + Add item
+            </button>
           </div>
         </div>
 
@@ -75,19 +183,19 @@ export default function NewTransactionPage() {
           <div className="mt-4 space-y-2 text-sm text-slate-600">
             <div className="flex justify-between">
               <span>VATable sales (12%)</span>
-              <span>₱4,500.00</span>
+              <span>{formatCurrency(summary.vatable)}</span>
             </div>
             <div className="flex justify-between">
               <span>VAT amount</span>
-              <span>₱540.00</span>
+              <span>{formatCurrency(summary.vatAmount)}</span>
             </div>
             <div className="flex justify-between">
               <span>Zero-rated sales (0%)</span>
-              <span>₱0.00</span>
+              <span>{formatCurrency(summary.zeroRated)}</span>
             </div>
             <div className="flex justify-between">
               <span>VAT-exempt sales</span>
-              <span>₱0.00</span>
+              <span>{formatCurrency(summary.exempt)}</span>
             </div>
             <div className="flex justify-between">
               <span>Withholding</span>
@@ -95,7 +203,7 @@ export default function NewTransactionPage() {
             </div>
             <div className="flex justify-between font-semibold text-slate-900">
               <span>Total</span>
-              <span>₱5,040.00</span>
+              <span>{formatCurrency(summary.total)}</span>
             </div>
           </div>
           <div className="mt-4 rounded-xl border border-slate-200 bg-slate-50 p-3 text-xs text-slate-600">

@@ -1,4 +1,5 @@
 import { documents, transactions } from "@/data/demo";
+import DemoActionButton from "@/components/ui/demo-action-button";
 
 const formatCurrency = (value: number) =>
   new Intl.NumberFormat("en-PH", { style: "currency", currency: "PHP" }).format(value);
@@ -72,9 +73,12 @@ export default function CreateDocumentPage() {
           <div className="mt-4 rounded-xl border border-slate-200 bg-slate-50 p-3 text-xs text-slate-600">
             Issuance is final. Voids and credit notes preserve audit history.
           </div>
-          <button className="mt-6 h-11 w-full rounded-xl bg-[#1a73e8] text-sm font-semibold text-white">
+          <DemoActionButton
+            message="Demo: issue document."
+            className="mt-6 h-11 w-full rounded-xl bg-[#1a73e8] text-sm font-semibold text-white"
+          >
             Issue document
-          </button>
+          </DemoActionButton>
         </div>
       </section>
     </div>

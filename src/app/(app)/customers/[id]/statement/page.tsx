@@ -1,3 +1,5 @@
+import DemoActionButton from "@/components/ui/demo-action-button";
+
 export default function CustomerStatementPage() {
   return (
     <div className="space-y-6">
@@ -20,7 +22,12 @@ export default function CustomerStatementPage() {
         <div className="mt-4 rounded-xl border border-slate-200 bg-slate-50 p-3 text-xs text-slate-600">
           Statements include unpaid invoices and applied payments.
         </div>
-        <button className="mt-6 h-11 rounded-xl bg-[#1a73e8] px-6 text-sm font-semibold text-white">Generate statement</button>
+        <DemoActionButton
+          message="Demo: generate customer statement."
+          className="mt-6 h-11 rounded-xl bg-[#1a73e8] px-6 text-sm font-semibold text-white"
+        >
+          Generate statement
+        </DemoActionButton>
       </section>
     </div>
   );

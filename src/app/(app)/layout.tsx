@@ -50,9 +50,12 @@ export default function AppLayout({
           <div className="mt-auto rounded-2xl border border-slate-200 bg-white p-4 text-xs text-slate-500">
             <p className="font-semibold text-slate-700">Trial: 5 days left</p>
             <p className="mt-2">Upgrade anytime to keep issuing documents.</p>
-            <button className="mt-3 w-full rounded-lg bg-[#1a73e8] px-3 py-2 text-xs font-semibold text-white">
+            <a
+              href="/billing"
+              className="mt-3 block w-full rounded-lg bg-[#1a73e8] px-3 py-2 text-center text-xs font-semibold text-white"
+            >
               Upgrade
-            </button>
+            </a>
           </div>
         </aside>
 
@@ -77,9 +80,12 @@ export default function AppLayout({
                 >
                   New transaction
                 </a>
-                <button className="rounded-xl border border-slate-200 px-4 py-2 text-sm text-slate-600">
+                <a
+                  href="/settings/notifications"
+                  className="rounded-xl border border-slate-200 px-4 py-2 text-sm text-slate-600"
+                >
                   Support
-                </button>
+                </a>
                 <div className="flex items-center gap-2 rounded-full border border-slate-200 px-3 py-2 text-sm">
                   <span className="h-2 w-2 rounded-full bg-emerald-500" />
                   Juan Dela Cruz

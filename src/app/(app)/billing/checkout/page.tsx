@@ -1,3 +1,5 @@
+import DemoActionButton from "@/components/ui/demo-action-button";
+
 export default function BillingCheckoutPage() {
   return (
     <div className="space-y-6">
@@ -14,9 +16,12 @@ export default function BillingCheckoutPage() {
         <div className="mt-4 rounded-xl border border-slate-200 bg-slate-50 p-3 text-xs text-slate-600">
           You will be redirected to PayMongo to complete payment securely.
         </div>
-        <button className="mt-6 h-11 rounded-xl bg-[#1a73e8] px-6 text-sm font-semibold text-white">
+        <DemoActionButton
+          message="Demo: redirect to PayMongo checkout."
+          className="mt-6 h-11 rounded-xl bg-[#1a73e8] px-6 text-sm font-semibold text-white"
+        >
           Proceed to PayMongo checkout
-        </button>
+        </DemoActionButton>
       </section>
     </div>
   );

@@ -153,12 +153,15 @@ export default function BusinessProfilePage() {
             </div>
 
             <div className="mt-8 flex items-center justify-between">
-              <button className="text-sm font-semibold text-slate-500">
+              <a href="/verify-email" className="text-sm font-semibold text-slate-500">
                 Back
-              </button>
-              <button className="h-11 rounded-xl bg-[#1a73e8] px-6 text-sm font-semibold text-white shadow-[0_12px_24px_rgba(26,115,232,0.35)] transition hover:bg-[#165ec3]">
+              </a>
+              <a
+                href="/onboarding/vat"
+                className="h-11 rounded-xl bg-[#1a73e8] px-6 text-sm font-semibold text-white shadow-[0_12px_24px_rgba(26,115,232,0.35)] transition hover:bg-[#165ec3]"
+              >
                 Continue
-              </button>
+              </a>
             </div>
           </div>
         </section>

@@ -1,3 +1,5 @@
+import DemoActionButton from "@/components/ui/demo-action-button";
+
 export default function NotificationsSettingsPage() {
   return (
     <div className="space-y-6">
@@ -26,7 +28,12 @@ export default function NotificationsSettingsPage() {
               <input className="h-11 w-full rounded-xl border border-slate-200 px-4 text-sm" placeholder="phvat-verify" />
             </div>
           </div>
-          <button className="mt-6 h-11 rounded-xl bg-[#1a73e8] px-6 text-sm font-semibold text-white">Save connection</button>
+          <DemoActionButton
+            message="Demo: save Messenger connection."
+            className="mt-6 h-11 rounded-xl bg-[#1a73e8] px-6 text-sm font-semibold text-white"
+          >
+            Save connection
+          </DemoActionButton>
         </div>
 
         <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">

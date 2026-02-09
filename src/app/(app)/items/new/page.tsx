@@ -1,3 +1,5 @@
+import DemoActionButton from "@/components/ui/demo-action-button";
+
 export default function NewItemPage() {
   return (
     <div className="space-y-6">
@@ -33,8 +35,18 @@ export default function NewItemPage() {
           </div>
         </div>
         <div className="mt-6 flex items-center justify-between">
-          <button className="text-sm font-semibold text-slate-500">Cancel</button>
-          <button className="h-11 rounded-xl bg-[#1a73e8] px-6 text-sm font-semibold text-white">Save item</button>
+          <DemoActionButton
+            message="Demo: cancel item creation."
+            className="text-sm font-semibold text-slate-500"
+          >
+            Cancel
+          </DemoActionButton>
+          <DemoActionButton
+            message="Demo: save new item."
+            className="h-11 rounded-xl bg-[#1a73e8] px-6 text-sm font-semibold text-white"
+          >
+            Save item
+          </DemoActionButton>
         </div>
       </section>
     </div>

@@ -1,3 +1,5 @@
+import DemoActionButton from "@/components/ui/demo-action-button";
+
 export default function VoidDocumentPage() {
   return (
     <div className="space-y-6">
@@ -22,12 +24,18 @@ export default function VoidDocumentPage() {
           </p>
         </div>
         <div className="mt-6 flex items-center gap-3">
-          <button className="rounded-xl border border-slate-200 px-4 py-2 text-sm font-semibold text-slate-600">
+          <DemoActionButton
+            message="Demo: cancel void action."
+            className="rounded-xl border border-slate-200 px-4 py-2 text-sm font-semibold text-slate-600"
+          >
             Cancel
-          </button>
-          <button className="rounded-xl bg-rose-600 px-4 py-2 text-sm font-semibold text-white">
+          </DemoActionButton>
+          <DemoActionButton
+            message="Demo: confirm void."
+            className="rounded-xl bg-rose-600 px-4 py-2 text-sm font-semibold text-white"
+          >
             Confirm void
-          </button>
+          </DemoActionButton>
         </div>
       </section>
     </div>

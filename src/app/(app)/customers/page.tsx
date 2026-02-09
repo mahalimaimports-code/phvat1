@@ -1,6 +1,11 @@
+"use client";
+
+import { useState } from "react";
 import EmptyState from "@/components/ui/empty-state";
 import Skeleton from "@/components/ui/skeleton";
 import { customers } from "@/data/demo";
+import FileImportButton from "@/components/ui/file-import-button";
+import { downloadCsv, downloadTemplateCsv } from "@/lib/exporters";
 
 const formatCurrency = (value: number) =>
   new Intl.NumberFormat("en-PH", { style: "currency", currency: "PHP" }).format(value);
@@ -12,6 +17,35 @@ const balanceStyles = (balance: number) =>
 
 export default function CustomersPage() {
   const isLoading = false;
+  const [lastImport, setLastImport] = useState<string | null>(null);
+
+  const handleExportCsv = () => {
+    downloadCsv(
+      "customers.csv",
+      customers.map((cust) => ({
+        id: cust.id,
+        name: cust.name,
+        tin: cust.tin ?? "",
+        email: cust.email,
+        phone: cust.phone,
+        address: cust.address,
+        balance: cust.balance,
+      })),
+      ["id", "name", "tin", "email", "phone", "address", "balance"]
+    );
+  };
+
+  const handleDownloadTemplate = () => {
+    downloadTemplateCsv("customers-template.csv", [
+      "id",
+      "name",
+      "tin",
+      "email",
+      "phone",
+      "address",
+      "balance",
+    ]);
+  };
 
   return (
     <div className="space-y-6">
@@ -46,17 +80,34 @@ export default function CustomersPage() {
             </select>
           </div>
           <div className="flex flex-wrap items-center gap-2">
-            <button className="h-10 rounded-xl border border-slate-200 px-3 text-sm font-semibold text-slate-600">
+            <button
+              type="button"
+              onClick={handleExportCsv}
+              className="h-10 rounded-xl border border-slate-200 px-3 text-sm font-semibold text-slate-600"
+            >
               Export CSV
             </button>
-            <button className="h-10 rounded-xl border border-slate-200 px-3 text-sm font-semibold text-slate-600">
-              Import Excel
-            </button>
-            <button className="h-10 rounded-xl border border-slate-200 px-3 text-sm font-semibold text-slate-600">
+            <FileImportButton
+              label="Import Excel"
+              accept=".csv,.xlsx"
+              className="h-10 rounded-xl border border-slate-200 px-3 text-sm font-semibold text-slate-600"
+              onImported={(file) => setLastImport(file.name)}
+            />
+            <button
+              type="button"
+              onClick={handleDownloadTemplate}
+              className="h-10 rounded-xl border border-slate-200 px-3 text-sm font-semibold text-slate-600"
+            >
               Download Template
             </button>
           </div>
         </div>
+
+        {lastImport ? (
+          <div className="mt-3 rounded-xl border border-emerald-200 bg-emerald-50 px-4 py-2 text-xs text-emerald-700">
+            Imported file: {lastImport}
+          </div>
+        ) : null}
 
         <div className="mt-4 rounded-xl border border-slate-200 bg-slate-50 p-3 text-xs text-slate-600">
           Client start date = first recorded transaction date.

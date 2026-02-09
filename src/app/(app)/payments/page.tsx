@@ -1,6 +1,12 @@
+"use client";
+
+import { useState } from "react";
 import EmptyState from "@/components/ui/empty-state";
 import Skeleton from "@/components/ui/skeleton";
 import { payments } from "@/data/demo";
+import FileImportButton from "@/components/ui/file-import-button";
+import Modal from "@/components/ui/modal";
+import { downloadCsv, downloadTemplateCsv } from "@/lib/exporters";
 
 const formatCurrency = (value: number) =>
   new Intl.NumberFormat("en-PH", { style: "currency", currency: "PHP" }).format(value);
@@ -13,6 +19,37 @@ const methodStyles: Record<string, string> = {
 
 export default function PaymentsPage() {
   const isLoading = false;
+  const [lastImport, setLastImport] = useState<string | null>(null);
+  const [linkModalOpen, setLinkModalOpen] = useState(false);
+  const [linkedProvider, setLinkedProvider] = useState("PayMongo");
+  const [provider, setProvider] = useState("PayMongo");
+  const [accountId, setAccountId] = useState("BPI-4021");
+
+  const handleExportCsv = () => {
+    downloadCsv(
+      "payments.csv",
+      payments.map((pay) => ({
+        id: pay.id,
+        document: pay.doc,
+        amount: pay.amount,
+        method: pay.method,
+        date: pay.date,
+        reference: pay.reference,
+      })),
+      ["id", "document", "amount", "method", "date", "reference"]
+    );
+  };
+
+  const handleDownloadTemplate = () => {
+    downloadTemplateCsv("payments-template.csv", [
+      "id",
+      "document",
+      "amount",
+      "method",
+      "date",
+      "reference",
+    ]);
+  };
 
   return (
     <div className="space-y-6">
@@ -60,20 +97,44 @@ export default function PaymentsPage() {
             </select>
           </div>
           <div className="flex flex-wrap items-center gap-2">
-            <button className="h-10 rounded-xl border border-slate-200 px-3 text-sm font-semibold text-slate-600">
+            <button
+              type="button"
+              onClick={() => setLinkModalOpen(true)}
+              className="h-10 rounded-xl border border-slate-200 px-3 text-sm font-semibold text-slate-600"
+            >
               Link bank / POS
             </button>
-            <button className="h-10 rounded-xl border border-slate-200 px-3 text-sm font-semibold text-slate-600">
+            <button
+              type="button"
+              onClick={handleExportCsv}
+              className="h-10 rounded-xl border border-slate-200 px-3 text-sm font-semibold text-slate-600"
+            >
               Export CSV
             </button>
-            <button className="h-10 rounded-xl border border-slate-200 px-3 text-sm font-semibold text-slate-600">
-              Import Excel
-            </button>
-            <button className="h-10 rounded-xl border border-slate-200 px-3 text-sm font-semibold text-slate-600">
+            <FileImportButton
+              label="Import Excel"
+              accept=".csv,.xlsx"
+              className="h-10 rounded-xl border border-slate-200 px-3 text-sm font-semibold text-slate-600"
+              onImported={(file) => setLastImport(file.name)}
+            />
+            <button
+              type="button"
+              onClick={handleDownloadTemplate}
+              className="h-10 rounded-xl border border-slate-200 px-3 text-sm font-semibold text-slate-600"
+            >
               Download Template
             </button>
           </div>
         </div>
+
+        <div className="mt-3 rounded-xl border border-slate-200 bg-slate-50 px-4 py-2 text-xs text-slate-600">
+          Linked provider: {linkedProvider}
+        </div>
+        {lastImport ? (
+          <div className="mt-3 rounded-xl border border-emerald-200 bg-emerald-50 px-4 py-2 text-xs text-emerald-700">
+            Imported file: {lastImport}
+          </div>
+        ) : null}
 
         <div className="mt-4 rounded-xl border border-slate-200 bg-slate-50 p-3 text-xs text-slate-600">
           Linked banks or POS systems can auto-sync payments monthly.
@@ -112,6 +173,57 @@ export default function PaymentsPage() {
           )}
         </div>
       </section>
+
+      <Modal
+        isOpen={linkModalOpen}
+        title="Link bank or POS"
+        description="Connect a provider to sync payments automatically."
+        onClose={() => setLinkModalOpen(false)}
+        footer={
+          <div className="flex justify-end gap-2">
+            <button
+              type="button"
+              onClick={() => setLinkModalOpen(false)}
+              className="h-10 rounded-xl border border-slate-200 px-4 text-sm font-semibold text-slate-600"
+            >
+              Cancel
+            </button>
+            <button
+              type="button"
+              onClick={() => {
+                setLinkedProvider(`${provider} · ${accountId}`);
+                setLinkModalOpen(false);
+              }}
+              className="h-10 rounded-xl bg-[#1a73e8] px-4 text-sm font-semibold text-white"
+            >
+              Save link
+            </button>
+          </div>
+        }
+      >
+        <div className="space-y-3 text-sm text-slate-600">
+          <label className="block text-xs font-semibold uppercase tracking-[0.15em] text-slate-500">
+            Provider
+          </label>
+          <select
+            value={provider}
+            onChange={(event) => setProvider(event.target.value)}
+            className="h-11 w-full rounded-xl border border-slate-200 bg-white px-3"
+          >
+            <option>PayMongo</option>
+            <option>Maya Business</option>
+            <option>BPI POS</option>
+          </select>
+          <label className="block text-xs font-semibold uppercase tracking-[0.15em] text-slate-500">
+            Account ID
+          </label>
+          <input
+            value={accountId}
+            onChange={(event) => setAccountId(event.target.value)}
+            className="h-11 w-full rounded-xl border border-slate-200 px-3"
+          />
+        </div>
+      </Modal>
     </div>
   );
 }

@@ -1,4 +1,7 @@
+"use client";
+
 import { businessProfile, documents } from "@/data/demo";
+import { downloadPdf } from "@/lib/exporters";
 
 const document = documents[0];
 const formatCurrency = (value: number) =>
@@ -49,12 +52,28 @@ export default function DocumentDetailPage() {
               <span>VAT</span>
               <span>{formatCurrency(540)}</span>
             </div>
-            <div className="flex justify-between font-semibold text-slate-900">
+          <div className="flex justify-between font-semibold text-slate-900">
               <span>Total</span>
               <span>{formatCurrency(document.amount)}</span>
             </div>
           </div>
-          <button className="mt-6 h-10 w-full rounded-xl border border-slate-200 text-sm font-semibold text-slate-600">
+          <button
+            type="button"
+            onClick={() =>
+              downloadPdf("document.pdf", `Document ${document.id}`, [
+                `Customer: ${document.customer}`,
+                `Type: ${document.type}`,
+                `Issued: ${document.issuedAt}`,
+                `Amount: PHP ${document.amount.toFixed(2)}`,
+                `VAT Type: ${document.vatType}`,
+                `Status: ${document.status}`,
+                `BIR RDO: ${businessProfile.rdo}`,
+                `ATP: ${businessProfile.atp}`,
+                `PTU: ${businessProfile.ptu}`,
+              ])
+            }
+            className="mt-6 h-10 w-full rounded-xl border border-slate-200 text-sm font-semibold text-slate-600"
+          >
             Download PDF
           </button>
         </div>

@@ -1,3 +1,5 @@
+import DemoActionButton from "@/components/ui/demo-action-button";
+
 export default function VerifyEmailPage() {
   return (
     <div className="min-h-screen bg-gradient-to-b from-[#f7faff] via-[#f9fbff] to-white text-slate-900">
@@ -91,16 +93,22 @@ export default function VerifyEmailPage() {
                   Didn’t receive the email? Check spam or request a new link.
                 </p>
               </div>
-              <button className="h-11 w-full rounded-xl bg-[#1a73e8] text-sm font-semibold text-white shadow-[0_12px_24px_rgba(26,115,232,0.35)] transition hover:bg-[#165ec3]">
+              <DemoActionButton
+                message="Demo: resend verification email."
+                className="h-11 w-full rounded-xl bg-[#1a73e8] text-sm font-semibold text-white shadow-[0_12px_24px_rgba(26,115,232,0.35)] transition hover:bg-[#165ec3]"
+              >
                 Resend verification email
-              </button>
-              <button className="h-11 w-full rounded-xl border border-slate-200 bg-white text-sm font-semibold text-slate-700 hover:border-[#1a73e8] hover:text-[#1a73e8]">
+              </DemoActionButton>
+              <DemoActionButton
+                message="Demo: change email address."
+                className="h-11 w-full rounded-xl border border-slate-200 bg-white text-sm font-semibold text-slate-700 hover:border-[#1a73e8] hover:text-[#1a73e8]"
+              >
                 Change email address
-              </button>
+              </DemoActionButton>
             </div>
 
             <div className="mt-6 text-xs text-slate-500">
-              Already verified? <button className="font-semibold text-[#1a73e8]">Continue setup</button>
+              Already verified? <a href="/onboarding/business" className="font-semibold text-[#1a73e8]">Continue setup</a>
             </div>
           </div>
         </section>

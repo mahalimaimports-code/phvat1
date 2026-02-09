@@ -1,6 +1,11 @@
+"use client";
+
+import { useState } from "react";
 import EmptyState from "@/components/ui/empty-state";
 import Skeleton from "@/components/ui/skeleton";
 import { documents } from "@/data/demo";
+import FileImportButton from "@/components/ui/file-import-button";
+import { downloadCsv, downloadPdf, downloadTemplateCsv } from "@/lib/exporters";
 
 const formatCurrency = (value: number) =>
   new Intl.NumberFormat("en-PH", { style: "currency", currency: "PHP" }).format(value);
@@ -13,6 +18,43 @@ const statusStyles: Record<string, string> = {
 
 export default function DocumentsPage() {
   const isLoading = false;
+  const [lastImport, setLastImport] = useState<string | null>(null);
+
+  const handleExportPdf = () => {
+    const lines = documents.map(
+      (doc) =>
+        `${doc.id} | ${doc.type} | ${doc.customer} | PHP ${doc.amount.toFixed(2)} | ${doc.status}`
+    );
+    downloadPdf("documents.pdf", "Documents Export", lines);
+  };
+
+  const handleExportCsv = () => {
+    downloadCsv(
+      "documents.csv",
+      documents.map((doc) => ({
+        id: doc.id,
+        type: doc.type,
+        customer: doc.customer,
+        amount: doc.amount,
+        status: doc.status,
+        issuedAt: doc.issuedAt,
+        vatType: doc.vatType,
+      })),
+      ["id", "type", "customer", "amount", "status", "issuedAt", "vatType"]
+    );
+  };
+
+  const handleDownloadTemplate = () => {
+    downloadTemplateCsv("documents-template.csv", [
+      "id",
+      "type",
+      "customer",
+      "amount",
+      "status",
+      "issuedAt",
+      "vatType",
+    ]);
+  };
 
   return (
     <div className="space-y-6">
@@ -72,20 +114,41 @@ export default function DocumentsPage() {
             </select>
           </div>
           <div className="flex flex-wrap items-center gap-2">
-            <button className="h-10 rounded-xl border border-slate-200 px-3 text-sm font-semibold text-slate-600">
+            <button
+              type="button"
+              onClick={handleExportPdf}
+              className="h-10 rounded-xl border border-slate-200 px-3 text-sm font-semibold text-slate-600"
+            >
               Export PDF
             </button>
-            <button className="h-10 rounded-xl border border-slate-200 px-3 text-sm font-semibold text-slate-600">
+            <button
+              type="button"
+              onClick={handleExportCsv}
+              className="h-10 rounded-xl border border-slate-200 px-3 text-sm font-semibold text-slate-600"
+            >
               Export CSV
             </button>
-            <button className="h-10 rounded-xl border border-slate-200 px-3 text-sm font-semibold text-slate-600">
-              Import Excel
-            </button>
-            <button className="h-10 rounded-xl border border-slate-200 px-3 text-sm font-semibold text-slate-600">
+            <FileImportButton
+              label="Import Excel"
+              accept=".csv,.xlsx"
+              className="h-10 rounded-xl border border-slate-200 px-3 text-sm font-semibold text-slate-600"
+              onImported={(file) => setLastImport(file.name)}
+            />
+            <button
+              type="button"
+              onClick={handleDownloadTemplate}
+              className="h-10 rounded-xl border border-slate-200 px-3 text-sm font-semibold text-slate-600"
+            >
               Download Template
             </button>
           </div>
         </div>
+
+        {lastImport ? (
+          <div className="mt-3 rounded-xl border border-emerald-200 bg-emerald-50 px-4 py-2 text-xs text-emerald-700">
+            Imported file: {lastImport}
+          </div>
+        ) : null}
 
         <div className="mt-4 rounded-xl border border-slate-200 bg-slate-50 p-3 text-xs text-slate-600">
           Attachments are stored with each document for audit support.

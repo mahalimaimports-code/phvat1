@@ -1,3 +1,5 @@
+import DemoActionButton from "@/components/ui/demo-action-button";
+
 export default function CreditNotePage() {
   return (
     <div className="space-y-6">
@@ -39,9 +41,12 @@ export default function CreditNotePage() {
               <span>₱1,000.00</span>
             </div>
           </div>
-          <button className="mt-6 h-11 w-full rounded-xl bg-[#1a73e8] text-sm font-semibold text-white">
+          <DemoActionButton
+            message="Demo: issue credit note."
+            className="mt-6 h-11 w-full rounded-xl bg-[#1a73e8] text-sm font-semibold text-white"
+          >
             Issue credit note
-          </button>
+          </DemoActionButton>
         </div>
       </section>
     </div>

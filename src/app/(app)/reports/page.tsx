@@ -1,3 +1,5 @@
+import DemoActionButton from "@/components/ui/demo-action-button";
+
 const reports = [
   { title: "Sales summary", desc: "Daily and monthly sales totals", href: "/reports/sales" },
   { title: "VAT summary", desc: "VATable, zero-rated, and exempt breakdowns", href: "/reports/vat" },
@@ -35,7 +37,12 @@ export default function ReportsPage() {
             <option>Zero-rated</option>
             <option>Exempt</option>
           </select>
-          <button className="h-10 rounded-xl bg-[#1a73e8] px-4 text-sm font-semibold text-white">Apply</button>
+          <DemoActionButton
+            message="Demo: apply report filters."
+            className="h-10 rounded-xl bg-[#1a73e8] px-4 text-sm font-semibold text-white"
+          >
+            Apply
+          </DemoActionButton>
         </div>
       </section>
 

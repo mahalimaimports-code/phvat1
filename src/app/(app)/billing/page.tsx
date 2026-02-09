@@ -1,4 +1,15 @@
+"use client";
+
+import { useState } from "react";
+import Modal from "@/components/ui/modal";
+import { downloadPdf } from "@/lib/exporters";
+
 export default function BillingPage() {
+  const [linkModalOpen, setLinkModalOpen] = useState(false);
+  const [bankName, setBankName] = useState("BPI Business");
+  const [accountNumber, setAccountNumber] = useState("**** 4021");
+  const [linkedBank, setLinkedBank] = useState("PayMongo checkout");
+
   return (
     <div className="space-y-6">
       <section>
@@ -22,11 +33,15 @@ export default function BillingPage() {
         </div>
         <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
           <h3 className="text-sm font-semibold text-slate-900">Payment method</h3>
-          <p className="mt-2 text-sm text-slate-600">PayMongo checkout on file.</p>
+          <p className="mt-2 text-sm text-slate-600">{linkedBank} on file.</p>
           <div className="mt-4 rounded-xl border border-slate-200 bg-slate-50 p-3 text-xs text-slate-600">
             Status: Active · Auto-renew enabled
           </div>
-          <button className="mt-4 h-10 rounded-xl border border-slate-200 px-4 text-xs font-semibold text-slate-600">
+          <button
+            type="button"
+            onClick={() => setLinkModalOpen(true)}
+            className="mt-4 h-10 rounded-xl border border-slate-200 px-4 text-xs font-semibold text-slate-600"
+          >
             Link bank for auto-pay
           </button>
           <a href="/billing/history" className="mt-4 inline-flex text-xs font-semibold text-[#1a73e8]">
@@ -38,7 +53,19 @@ export default function BillingPage() {
       <section className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
         <div className="flex items-center justify-between">
           <h3 className="text-sm font-semibold text-slate-900">Bills & invoices overview</h3>
-          <button className="text-xs font-semibold text-[#1a73e8]">Download PDF</button>
+          <button
+            type="button"
+            onClick={() =>
+              downloadPdf("billing-overview.pdf", "Bills & Invoices", [
+                "INV-1042 | Invoice | PHP 5040.00 | Paid",
+                "INV-1041 | Invoice | PHP 9800.00 | Overdue",
+                "SUB-2026-02 | Subscription | PHP 99.00 | Paid",
+              ])
+            }
+            className="text-xs font-semibold text-[#1a73e8]"
+          >
+            Download PDF
+          </button>
         </div>
         <div className="mt-4 space-y-3">
           {[
@@ -63,6 +90,57 @@ export default function BillingPage() {
           ))}
         </div>
       </section>
+
+      <Modal
+        isOpen={linkModalOpen}
+        title="Link bank for auto-pay"
+        description="Connect a bank account for automatic monthly payments."
+        onClose={() => setLinkModalOpen(false)}
+        footer={
+          <div className="flex justify-end gap-2">
+            <button
+              type="button"
+              onClick={() => setLinkModalOpen(false)}
+              className="h-10 rounded-xl border border-slate-200 px-4 text-sm font-semibold text-slate-600"
+            >
+              Cancel
+            </button>
+            <button
+              type="button"
+              onClick={() => {
+                setLinkedBank(`${bankName} ${accountNumber}`);
+                setLinkModalOpen(false);
+              }}
+              className="h-10 rounded-xl bg-[#1a73e8] px-4 text-sm font-semibold text-white"
+            >
+              Save bank
+            </button>
+          </div>
+        }
+      >
+        <div className="grid grid-cols-1 gap-4 text-sm text-slate-600 sm:grid-cols-2">
+          <div className="space-y-2">
+            <label className="text-xs font-semibold uppercase tracking-[0.15em] text-slate-500">
+              Bank name
+            </label>
+            <input
+              value={bankName}
+              onChange={(event) => setBankName(event.target.value)}
+              className="h-11 w-full rounded-xl border border-slate-200 px-3"
+            />
+          </div>
+          <div className="space-y-2">
+            <label className="text-xs font-semibold uppercase tracking-[0.15em] text-slate-500">
+              Account
+            </label>
+            <input
+              value={accountNumber}
+              onChange={(event) => setAccountNumber(event.target.value)}
+              className="h-11 w-full rounded-xl border border-slate-200 px-3"
+            />
+          </div>
+        </div>
+      </Modal>
     </div>
   );
 }

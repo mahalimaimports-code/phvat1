@@ -126,9 +126,12 @@ export default function SignUpPage() {
                   Used for account recovery and billing updates.
                 </p>
               </div>
-              <button className="h-11 w-full rounded-xl bg-[#1a73e8] text-sm font-semibold text-white shadow-[0_12px_24px_rgba(26,115,232,0.35)] transition hover:bg-[#165ec3]">
+              <a
+                href="/verify-email"
+                className="flex h-11 w-full items-center justify-center rounded-xl bg-[#1a73e8] text-sm font-semibold text-white shadow-[0_12px_24px_rgba(26,115,232,0.35)] transition hover:bg-[#165ec3]"
+              >
                 Start free trial
-              </button>
+              </a>
               <div className="rounded-xl border border-slate-200 bg-slate-50 p-3 text-xs text-slate-500">
                 By signing up, you agree to the Terms and Privacy Policy. We never
                 claim BIR approval.
@@ -137,9 +140,9 @@ export default function SignUpPage() {
 
             <div className="mt-6 flex items-center justify-between text-xs text-slate-500">
               <span>Already have an account?</span>
-              <button className="font-semibold text-[#1a73e8]">
+              <a href="/" className="font-semibold text-[#1a73e8]">
                 Sign in
-              </button>
+              </a>
             </div>
           </div>
         </section>

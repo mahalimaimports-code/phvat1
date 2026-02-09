@@ -1,3 +1,5 @@
+import DemoActionButton from "@/components/ui/demo-action-button";
+
 export default function AppLinkingPage() {
   return (
     <div className="space-y-6">
@@ -19,7 +21,12 @@ export default function AppLinkingPage() {
             ].map((bank) => (
               <div key={bank} className="flex items-center justify-between rounded-xl border border-slate-200 bg-slate-50 px-4 py-3">
                 <span className="text-sm font-semibold text-slate-700">{bank}</span>
-                <button className="text-xs font-semibold text-[#1a73e8]">Link</button>
+                <DemoActionButton
+                  message={`Demo: link ${bank}.`}
+                  className="text-xs font-semibold text-[#1a73e8]"
+                >
+                  Link
+                </DemoActionButton>
               </div>
             ))}
           </div>
@@ -32,7 +39,12 @@ export default function AppLinkingPage() {
             {["GCash POS", "Maya Terminal", "Shopify", "Lazada Seller"].map((app) => (
               <div key={app} className="flex items-center justify-between rounded-xl border border-slate-200 bg-slate-50 px-4 py-3">
                 <span className="text-sm font-semibold text-slate-700">{app}</span>
-                <button className="text-xs font-semibold text-[#1a73e8]">Link</button>
+                <DemoActionButton
+                  message={`Demo: link ${app}.`}
+                  className="text-xs font-semibold text-[#1a73e8]"
+                >
+                  Link
+                </DemoActionButton>
               </div>
             ))}
           </div>

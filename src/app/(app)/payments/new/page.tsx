@@ -1,4 +1,5 @@
 import { documents } from "@/data/demo";
+import DemoActionButton from "@/components/ui/demo-action-button";
 
 export default function RecordPaymentPage() {
   return (
@@ -72,9 +73,12 @@ export default function RecordPaymentPage() {
               <span>₱5,040.00</span>
             </div>
           </div>
-          <button className="mt-6 h-11 w-full rounded-xl bg-[#1a73e8] text-sm font-semibold text-white">
+          <DemoActionButton
+            message="Demo: save payment."
+            className="mt-6 h-11 w-full rounded-xl bg-[#1a73e8] text-sm font-semibold text-white"
+          >
             Save payment
-          </button>
+          </DemoActionButton>
         </div>
       </section>
     </div>

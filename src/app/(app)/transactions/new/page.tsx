@@ -2,6 +2,7 @@
 
 import { useMemo, useState } from "react";
 import { customers, items as catalogItems } from "@/data/demo";
+import DemoActionButton from "@/components/ui/demo-action-button";
 
 const formatCurrency = (value: number) =>
   new Intl.NumberFormat("en-PH", { style: "currency", currency: "PHP" }).format(value);
@@ -209,12 +210,18 @@ export default function NewTransactionPage() {
           <div className="mt-4 rounded-xl border border-slate-200 bg-slate-50 p-3 text-xs text-slate-600">
             Withholding reduces net receivable but does not change VAT basis.
           </div>
-          <button className="mt-6 h-11 w-full rounded-xl bg-[#1a73e8] text-sm font-semibold text-white">
+          <DemoActionButton
+            message="Demo: save transaction."
+            className="mt-6 h-11 w-full rounded-xl bg-[#1a73e8] text-sm font-semibold text-white"
+          >
             Save transaction
-          </button>
-          <button className="mt-3 h-11 w-full rounded-xl border border-slate-200 text-sm font-semibold text-slate-600">
+          </DemoActionButton>
+          <DemoActionButton
+            message="Demo: save transaction as draft."
+            className="mt-3 h-11 w-full rounded-xl border border-slate-200 text-sm font-semibold text-slate-600"
+          >
             Save as draft
-          </button>
+          </DemoActionButton>
         </div>
       </section>
     </div>

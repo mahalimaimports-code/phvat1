@@ -30,9 +30,12 @@ export default function SetupCompletePage() {
             )}
           </div>
 
-          <button className="mt-8 h-11 w-full rounded-xl bg-[#1a73e8] text-sm font-semibold text-white shadow-[0_12px_24px_rgba(26,115,232,0.35)] transition hover:bg-[#165ec3]">
+          <a
+            href="/dashboard"
+            className="mt-8 flex h-11 w-full items-center justify-center rounded-xl bg-[#1a73e8] text-sm font-semibold text-white shadow-[0_12px_24px_rgba(26,115,232,0.35)] transition hover:bg-[#165ec3]"
+          >
             Go to dashboard
-          </button>
+          </a>
           <p className="mt-4 text-xs text-slate-500">
             Trial ends in 7 days. Upgrade anytime in Billing.
           </p>

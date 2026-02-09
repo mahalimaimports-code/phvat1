@@ -1,3 +1,5 @@
+import DemoActionButton from "@/components/ui/demo-action-button";
+
 export default function SalesSummaryPage() {
   return (
     <div className="space-y-6">
@@ -23,7 +25,12 @@ export default function SalesSummaryPage() {
             <option>SariHub Online Store</option>
             <option>Bituin Co. Ltd.</option>
           </select>
-          <button className="h-10 rounded-xl bg-[#1a73e8] px-4 text-sm font-semibold text-white">Run</button>
+          <DemoActionButton
+            message="Demo: run sales summary report."
+            className="h-10 rounded-xl bg-[#1a73e8] px-4 text-sm font-semibold text-white"
+          >
+            Run
+          </DemoActionButton>
         </div>
         <div className="mt-4 rounded-xl border border-slate-200 bg-slate-50 p-3 text-xs text-slate-600">
           Export options: CSV, PDF, or accountant-ready summary.

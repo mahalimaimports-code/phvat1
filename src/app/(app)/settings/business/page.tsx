@@ -1,4 +1,5 @@
 import { businessProfile } from "@/data/demo";
+import DemoActionButton from "@/components/ui/demo-action-button";
 
 export default function BusinessSettingsPage() {
   return (
@@ -74,8 +75,18 @@ export default function BusinessSettingsPage() {
           </div>
         </div>
         <div className="mt-6 flex items-center justify-between">
-          <button className="text-sm font-semibold text-slate-500">Cancel</button>
-          <button className="h-11 rounded-xl bg-[#1a73e8] px-6 text-sm font-semibold text-white">Save changes</button>
+          <DemoActionButton
+            message="Demo: discard business profile changes."
+            className="text-sm font-semibold text-slate-500"
+          >
+            Cancel
+          </DemoActionButton>
+          <DemoActionButton
+            message="Demo: save business profile changes."
+            className="h-11 rounded-xl bg-[#1a73e8] px-6 text-sm font-semibold text-white"
+          >
+            Save changes
+          </DemoActionButton>
         </div>
       </section>
     </div>

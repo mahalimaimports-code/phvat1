@@ -65,9 +65,12 @@ export default function MobileNav({ items }: { items: NavItem[] }) {
                 <div className="mt-8 rounded-2xl border border-slate-200 bg-slate-50 p-4 text-xs text-slate-500">
                   <p className="font-semibold text-slate-700">Trial: 5 days left</p>
                   <p className="mt-2">Upgrade anytime to keep issuing documents.</p>
-                  <button className="mt-3 w-full rounded-lg bg-[#1a73e8] px-3 py-2 text-xs font-semibold text-white">
+                  <a
+                    href="/billing"
+                    className="mt-3 block w-full rounded-lg bg-[#1a73e8] px-3 py-2 text-center text-xs font-semibold text-white"
+                  >
                     Upgrade
-                  </button>
+                  </a>
                 </div>
               </div>
             </div>,

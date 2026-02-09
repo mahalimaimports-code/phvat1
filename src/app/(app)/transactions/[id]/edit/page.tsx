@@ -1,3 +1,5 @@
+import DemoActionButton from "@/components/ui/demo-action-button";
+
 export default function EditTransactionPage() {
   return (
     <div className="space-y-6">
@@ -39,14 +41,27 @@ export default function EditTransactionPage() {
             <p className="text-sm font-semibold text-slate-900">Service Fee</p>
             <p className="text-xs text-slate-500">Qty: 1 · ₱500.00</p>
           </div>
-          <button className="text-xs font-semibold text-[#1a73e8]">+ Add item</button>
+          <DemoActionButton
+            message="Demo: add line item."
+            className="text-xs font-semibold text-[#1a73e8]"
+          >
+            + Add item
+          </DemoActionButton>
         </div>
 
         <div className="mt-8 flex items-center justify-between">
-          <button className="text-sm font-semibold text-slate-500">Cancel</button>
-          <button className="h-11 rounded-xl bg-[#1a73e8] px-6 text-sm font-semibold text-white">
+          <DemoActionButton
+            message="Demo: cancel edit."
+            className="text-sm font-semibold text-slate-500"
+          >
+            Cancel
+          </DemoActionButton>
+          <DemoActionButton
+            message="Demo: save transaction changes."
+            className="h-11 rounded-xl bg-[#1a73e8] px-6 text-sm font-semibold text-white"
+          >
             Save changes
-          </button>
+          </DemoActionButton>
         </div>
       </section>
     </div>

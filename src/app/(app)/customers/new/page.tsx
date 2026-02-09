@@ -1,3 +1,5 @@
+import DemoActionButton from "@/components/ui/demo-action-button";
+
 export default function NewCustomerPage() {
   return (
     <div className="space-y-6">
@@ -30,8 +32,18 @@ export default function NewCustomerPage() {
           </div>
         </div>
         <div className="mt-6 flex items-center justify-between">
-          <button className="text-sm font-semibold text-slate-500">Cancel</button>
-          <button className="h-11 rounded-xl bg-[#1a73e8] px-6 text-sm font-semibold text-white">Save customer</button>
+          <DemoActionButton
+            message="Demo: cancel customer creation."
+            className="text-sm font-semibold text-slate-500"
+          >
+            Cancel
+          </DemoActionButton>
+          <DemoActionButton
+            message="Demo: save new customer."
+            className="h-11 rounded-xl bg-[#1a73e8] px-6 text-sm font-semibold text-white"
+          >
+            Save customer
+          </DemoActionButton>
         </div>
       </section>
     </div>

@@ -1,6 +1,10 @@
-import DemoActionButton from "@/components/ui/demo-action-button";
+"use client";
+
+import { useState } from "react";
 
 export default function VerifyEmailPage() {
+  const [status, setStatus] = useState<string | null>(null);
+
   return (
     <div className="min-h-screen bg-gradient-to-b from-[#f7faff] via-[#f9fbff] to-white text-slate-900">
       <main className="mx-auto grid min-h-screen max-w-[1200px] grid-cols-1 gap-10 px-6 py-10 lg:grid-cols-[1.05fr_0.95fr] lg:px-10 lg:py-12">
@@ -93,18 +97,25 @@ export default function VerifyEmailPage() {
                   Didn’t receive the email? Check spam or request a new link.
                 </p>
               </div>
-              <DemoActionButton
-                message="Demo: resend verification email."
+              {status ? (
+                <div className="rounded-2xl border border-emerald-200 bg-emerald-50 px-4 py-2 text-xs text-emerald-700">
+                  {status}
+                </div>
+              ) : null}
+              <button
+                type="button"
+                onClick={() => setStatus("Verification email resent. Check your inbox.")}
                 className="h-11 w-full rounded-xl bg-[#1a73e8] text-sm font-semibold text-white shadow-[0_12px_24px_rgba(26,115,232,0.35)] transition hover:bg-[#165ec3]"
               >
                 Resend verification email
-              </DemoActionButton>
-              <DemoActionButton
-                message="Demo: change email address."
+              </button>
+              <button
+                type="button"
+                onClick={() => setStatus("Change email flow opened (demo).")}
                 className="h-11 w-full rounded-xl border border-slate-200 bg-white text-sm font-semibold text-slate-700 hover:border-[#1a73e8] hover:text-[#1a73e8]"
               >
                 Change email address
-              </DemoActionButton>
+              </button>
             </div>
 
             <div className="mt-6 text-xs text-slate-500">

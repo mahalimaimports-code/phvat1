@@ -75,7 +75,7 @@ export default function BillingPage() {
           ].map((item) => (
             <a
               key={item.id}
-              href="#"
+              href={item.type === "Invoice" ? `/documents/${item.id}` : "/billing/history"}
               className="flex flex-wrap items-center justify-between gap-4 rounded-xl border border-slate-100 bg-slate-50 px-4 py-3"
             >
               <div>

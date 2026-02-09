@@ -1,7 +1,18 @@
+"use client";
+
+import { useState } from "react";
 import { documents } from "@/data/demo";
-import DemoActionButton from "@/components/ui/demo-action-button";
 
 export default function RecordPaymentPage() {
+  const [form, setForm] = useState({
+    document: documents[0]?.id ?? "INV-1042",
+    date: "Feb 3, 2026",
+    amount: "₱5,040.00",
+    method: "Bank Transfer",
+    reference: "BPI-2026-0021",
+  });
+  const [saved, setSaved] = useState<string | null>(null);
+
   return (
     <div className="space-y-6">
       <section>
@@ -22,7 +33,11 @@ export default function RecordPaymentPage() {
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
             <div className="space-y-2">
               <label className="text-xs font-semibold uppercase tracking-[0.15em] text-slate-500">Document</label>
-              <select className="h-11 w-full rounded-xl border border-slate-200 bg-white px-4 text-sm">
+              <select
+                className="h-11 w-full rounded-xl border border-slate-200 bg-white px-4 text-sm"
+                value={form.document}
+                onChange={(event) => setForm((prev) => ({ ...prev, document: event.target.value }))}
+              >
                 {documents.map((doc) => (
                   <option key={doc.id}>
                     {doc.id} · {doc.customer}
@@ -32,15 +47,27 @@ export default function RecordPaymentPage() {
             </div>
             <div className="space-y-2">
               <label className="text-xs font-semibold uppercase tracking-[0.15em] text-slate-500">Payment date</label>
-              <input className="h-11 w-full rounded-xl border border-slate-200 px-4 text-sm" placeholder="Feb 3, 2026" />
+              <input
+                className="h-11 w-full rounded-xl border border-slate-200 px-4 text-sm"
+                value={form.date}
+                onChange={(event) => setForm((prev) => ({ ...prev, date: event.target.value }))}
+              />
             </div>
             <div className="space-y-2">
               <label className="text-xs font-semibold uppercase tracking-[0.15em] text-slate-500">Amount</label>
-              <input className="h-11 w-full rounded-xl border border-slate-200 px-4 text-sm" placeholder="₱5,040.00" />
+              <input
+                className="h-11 w-full rounded-xl border border-slate-200 px-4 text-sm"
+                value={form.amount}
+                onChange={(event) => setForm((prev) => ({ ...prev, amount: event.target.value }))}
+              />
             </div>
             <div className="space-y-2">
               <label className="text-xs font-semibold uppercase tracking-[0.15em] text-slate-500">Method</label>
-              <select className="h-11 w-full rounded-xl border border-slate-200 bg-white px-4 text-sm">
+              <select
+                className="h-11 w-full rounded-xl border border-slate-200 bg-white px-4 text-sm"
+                value={form.method}
+                onChange={(event) => setForm((prev) => ({ ...prev, method: event.target.value }))}
+              >
                 <option>Bank Transfer</option>
                 <option>Cash</option>
                 <option>E-Wallet</option>
@@ -50,7 +77,11 @@ export default function RecordPaymentPage() {
           </div>
           <div className="mt-6 space-y-2">
             <label className="text-xs font-semibold uppercase tracking-[0.15em] text-slate-500">Reference</label>
-            <input className="h-11 w-full rounded-xl border border-slate-200 px-4 text-sm" placeholder="Transfer reference" />
+            <input
+              className="h-11 w-full rounded-xl border border-slate-200 px-4 text-sm"
+              value={form.reference}
+              onChange={(event) => setForm((prev) => ({ ...prev, reference: event.target.value }))}
+            />
           </div>
           <div className="mt-4 rounded-xl border border-slate-200 bg-slate-50 p-3 text-xs text-slate-600">
             Partial payments will reduce balance due automatically.
@@ -73,12 +104,18 @@ export default function RecordPaymentPage() {
               <span>₱5,040.00</span>
             </div>
           </div>
-          <DemoActionButton
-            message="Demo: save payment."
+          {saved ? (
+            <div className="mt-4 rounded-xl border border-emerald-200 bg-emerald-50 px-4 py-2 text-xs text-emerald-700">
+              {saved}
+            </div>
+          ) : null}
+          <button
+            type="button"
+            onClick={() => setSaved(`Payment saved for ${form.document}.`)}
             className="mt-6 h-11 w-full rounded-xl bg-[#1a73e8] text-sm font-semibold text-white"
           >
             Save payment
-          </DemoActionButton>
+          </button>
         </div>
       </section>
     </div>

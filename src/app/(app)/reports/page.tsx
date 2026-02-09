@@ -1,4 +1,6 @@
-import DemoActionButton from "@/components/ui/demo-action-button";
+"use client";
+
+import { useState } from "react";
 
 const reports = [
   { title: "Sales summary", desc: "Daily and monthly sales totals", href: "/reports/sales" },
@@ -7,6 +9,15 @@ const reports = [
 ];
 
 export default function ReportsPage() {
+  const [filters, setFilters] = useState({
+    period: "Weekly",
+    start: "Feb 1, 2026",
+    end: "Feb 28, 2026",
+    customer: "Customer",
+    taxType: "Tax type",
+  });
+  const [applied, setApplied] = useState(false);
+
   return (
     <div className="space-y-6">
       <section>
@@ -16,34 +27,60 @@ export default function ReportsPage() {
 
       <section className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
         <div className="flex flex-wrap items-center gap-3">
-          <select className="h-10 rounded-xl border border-slate-200 bg-white px-3 text-sm">
+          <select
+            className="h-10 rounded-xl border border-slate-200 bg-white px-3 text-sm"
+            value={filters.period}
+            onChange={(event) => setFilters((prev) => ({ ...prev, period: event.target.value }))}
+          >
             <option>Weekly</option>
             <option>Monthly</option>
             <option>Quarterly</option>
             <option>Annually</option>
             <option>Custom range</option>
           </select>
-          <input className="h-10 rounded-xl border border-slate-200 px-3 text-sm" placeholder="Start date" />
-          <input className="h-10 rounded-xl border border-slate-200 px-3 text-sm" placeholder="End date" />
-          <select className="h-10 rounded-xl border border-slate-200 bg-white px-3 text-sm">
+          <input
+            className="h-10 rounded-xl border border-slate-200 px-3 text-sm"
+            value={filters.start}
+            onChange={(event) => setFilters((prev) => ({ ...prev, start: event.target.value }))}
+          />
+          <input
+            className="h-10 rounded-xl border border-slate-200 px-3 text-sm"
+            value={filters.end}
+            onChange={(event) => setFilters((prev) => ({ ...prev, end: event.target.value }))}
+          />
+          <select
+            className="h-10 rounded-xl border border-slate-200 bg-white px-3 text-sm"
+            value={filters.customer}
+            onChange={(event) => setFilters((prev) => ({ ...prev, customer: event.target.value }))}
+          >
             <option>Customer</option>
             <option>Luna Retail Ventures</option>
             <option>SariHub Online Store</option>
             <option>Bituin Co. Ltd.</option>
           </select>
-          <select className="h-10 rounded-xl border border-slate-200 bg-white px-3 text-sm">
+          <select
+            className="h-10 rounded-xl border border-slate-200 bg-white px-3 text-sm"
+            value={filters.taxType}
+            onChange={(event) => setFilters((prev) => ({ ...prev, taxType: event.target.value }))}
+          >
             <option>Tax type</option>
             <option>VATable</option>
             <option>Zero-rated</option>
             <option>Exempt</option>
           </select>
-          <DemoActionButton
-            message="Demo: apply report filters."
+          <button
+            type="button"
+            onClick={() => setApplied(true)}
             className="h-10 rounded-xl bg-[#1a73e8] px-4 text-sm font-semibold text-white"
           >
             Apply
-          </DemoActionButton>
+          </button>
         </div>
+        {applied ? (
+          <div className="mt-4 rounded-xl border border-emerald-200 bg-emerald-50 px-4 py-2 text-xs text-emerald-700">
+            Filters applied: {filters.period} · {filters.start} - {filters.end}
+          </div>
+        ) : null}
       </section>
 
       <section className="grid grid-cols-1 gap-4 md:grid-cols-3">

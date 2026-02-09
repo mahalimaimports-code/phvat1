@@ -1,6 +1,10 @@
-import DemoActionButton from "@/components/ui/demo-action-button";
+"use client";
+
+import { useState } from "react";
 
 export default function BillingCheckoutPage() {
+  const [status, setStatus] = useState<string | null>(null);
+
   return (
     <div className="space-y-6">
       <section>
@@ -16,12 +20,18 @@ export default function BillingCheckoutPage() {
         <div className="mt-4 rounded-xl border border-slate-200 bg-slate-50 p-3 text-xs text-slate-600">
           You will be redirected to PayMongo to complete payment securely.
         </div>
-        <DemoActionButton
-          message="Demo: redirect to PayMongo checkout."
+        {status ? (
+          <div className="mt-4 rounded-xl border border-emerald-200 bg-emerald-50 px-4 py-2 text-xs text-emerald-700">
+            {status}
+          </div>
+        ) : null}
+        <button
+          type="button"
+          onClick={() => setStatus("Redirecting to PayMongo checkout (demo).")}
           className="mt-6 h-11 rounded-xl bg-[#1a73e8] px-6 text-sm font-semibold text-white"
         >
           Proceed to PayMongo checkout
-        </DemoActionButton>
+        </button>
       </section>
     </div>
   );

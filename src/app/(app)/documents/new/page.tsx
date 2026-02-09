@@ -1,10 +1,17 @@
+"use client";
+
+import { useState } from "react";
 import { documents, transactions } from "@/data/demo";
-import DemoActionButton from "@/components/ui/demo-action-button";
+import { downloadPdf } from "@/lib/exporters";
 
 const formatCurrency = (value: number) =>
   new Intl.NumberFormat("en-PH", { style: "currency", currency: "PHP" }).format(value);
 
 export default function CreateDocumentPage() {
+  const [docType, setDocType] = useState("Invoice");
+  const [trxId, setTrxId] = useState(transactions[0]?.id ?? "TRX-2026-0142");
+  const [issued, setIssued] = useState<string | null>(null);
+
   return (
     <div className="space-y-6">
       <section>
@@ -29,7 +36,11 @@ export default function CreateDocumentPage() {
               <label className="text-xs font-semibold uppercase tracking-[0.15em] text-slate-500">
                 Document type
               </label>
-              <select className="h-11 w-full rounded-xl border border-slate-200 bg-white px-4 text-sm">
+              <select
+                className="h-11 w-full rounded-xl border border-slate-200 bg-white px-4 text-sm"
+                value={docType}
+                onChange={(event) => setDocType(event.target.value)}
+              >
                 <option>Invoice</option>
                 <option>Official Receipt</option>
                 <option>Credit Note</option>
@@ -40,7 +51,11 @@ export default function CreateDocumentPage() {
               <label className="text-xs font-semibold uppercase tracking-[0.15em] text-slate-500">
                 Transaction
               </label>
-              <select className="h-11 w-full rounded-xl border border-slate-200 bg-white px-4 text-sm">
+              <select
+                className="h-11 w-full rounded-xl border border-slate-200 bg-white px-4 text-sm"
+                value={trxId}
+                onChange={(event) => setTrxId(event.target.value)}
+              >
                 {transactions.map((trx) => (
                   <option key={trx.id}>
                     {trx.id} · {trx.customer}
@@ -73,12 +88,26 @@ export default function CreateDocumentPage() {
           <div className="mt-4 rounded-xl border border-slate-200 bg-slate-50 p-3 text-xs text-slate-600">
             Issuance is final. Voids and credit notes preserve audit history.
           </div>
-          <DemoActionButton
-            message="Demo: issue document."
+          {issued ? (
+            <div className="mt-4 rounded-xl border border-emerald-200 bg-emerald-50 px-4 py-2 text-xs text-emerald-700">
+              {issued}
+            </div>
+          ) : null}
+          <button
+            type="button"
+            onClick={() => {
+              setIssued(`Issued ${docType} for ${trxId}.`);
+              downloadPdf("issued-document.pdf", `${docType} ${trxId}`, [
+                `Document type: ${docType}`,
+                `Transaction: ${trxId}`,
+                `Series: ${documents[0].series}`,
+                `Number: ${documents[0].number + 1}`,
+              ]);
+            }}
             className="mt-6 h-11 w-full rounded-xl bg-[#1a73e8] text-sm font-semibold text-white"
           >
             Issue document
-          </DemoActionButton>
+          </button>
         </div>
       </section>
     </div>

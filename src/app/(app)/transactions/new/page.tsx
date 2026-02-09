@@ -2,7 +2,6 @@
 
 import { useMemo, useState } from "react";
 import { customers, items as catalogItems } from "@/data/demo";
-import DemoActionButton from "@/components/ui/demo-action-button";
 
 const formatCurrency = (value: number) =>
   new Intl.NumberFormat("en-PH", { style: "currency", currency: "PHP" }).format(value);
@@ -21,6 +20,7 @@ type LineItem = {
 const VAT_RATE = 0.12;
 
 export default function NewTransactionPage() {
+  const [statusMessage, setStatusMessage] = useState<string | null>(null);
   const [lineItems, setLineItems] = useState<LineItem[]>(
     catalogItems.slice(0, 2).map((item) => ({
       id: item.id,
@@ -210,18 +210,27 @@ export default function NewTransactionPage() {
           <div className="mt-4 rounded-xl border border-slate-200 bg-slate-50 p-3 text-xs text-slate-600">
             Withholding reduces net receivable but does not change VAT basis.
           </div>
-          <DemoActionButton
-            message="Demo: save transaction."
+          {statusMessage ? (
+            <div className="mt-4 rounded-xl border border-emerald-200 bg-emerald-50 px-4 py-2 text-xs text-emerald-700">
+              {statusMessage}
+            </div>
+          ) : null}
+          <button
+            type="button"
+            onClick={() =>
+              setStatusMessage(`Transaction saved. Total: ${formatCurrency(summary.total)}`)
+            }
             className="mt-6 h-11 w-full rounded-xl bg-[#1a73e8] text-sm font-semibold text-white"
           >
             Save transaction
-          </DemoActionButton>
-          <DemoActionButton
-            message="Demo: save transaction as draft."
+          </button>
+          <button
+            type="button"
+            onClick={() => setStatusMessage("Transaction saved as draft.")}
             className="mt-3 h-11 w-full rounded-xl border border-slate-200 text-sm font-semibold text-slate-600"
           >
             Save as draft
-          </DemoActionButton>
+          </button>
         </div>
       </section>
     </div>

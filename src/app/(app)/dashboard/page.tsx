@@ -3,7 +3,6 @@
 import { useMemo, useState } from "react";
 import StatCard from "@/components/ui/stat-card";
 import Skeleton from "@/components/ui/skeleton";
-import DemoActionButton from "@/components/ui/demo-action-button";
 import { dashboardStats, recentActivity } from "@/data/demo";
 
 const formatCurrency = (value: number) =>
@@ -172,12 +171,12 @@ export default function DashboardPage() {
           <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
             <div className="flex items-center justify-between">
               <h3 className="text-lg font-semibold text-slate-900">Sales trend</h3>
-              <DemoActionButton
-                message="Demo: open Sales Trend report."
+              <a
+                href="/reports/sales"
                 className="text-xs font-semibold text-[#1a73e8]"
               >
                 View report
-              </DemoActionButton>
+              </a>
             </div>
             {isLoading ? (
               <Skeleton className="mt-6 h-52" />
@@ -214,12 +213,12 @@ export default function DashboardPage() {
         <section className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
           <div className="flex items-center justify-between">
             <h3 className="text-lg font-semibold text-slate-900">Collections overview</h3>
-            <DemoActionButton
-              message="Demo: open aging report."
+            <a
+              href="/reports/customer-statement"
               className="text-xs font-semibold text-[#1a73e8]"
             >
               View aging
-            </DemoActionButton>
+            </a>
           </div>
           <div className="mt-4 grid grid-cols-1 gap-4 sm:grid-cols-3">
             {[
@@ -239,12 +238,12 @@ export default function DashboardPage() {
       <section className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
         <div className="flex items-center justify-between">
           <h3 className="text-lg font-semibold text-slate-900">Recent activity</h3>
-          <DemoActionButton
-            message="Demo: open activity log."
+          <a
+            href="/transactions"
             className="text-xs font-semibold text-[#1a73e8]"
           >
             See all
-          </DemoActionButton>
+          </a>
         </div>
         <div className="mt-4 space-y-3">
           {isLoading

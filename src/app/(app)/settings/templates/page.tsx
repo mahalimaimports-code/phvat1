@@ -21,12 +21,25 @@ export default function TemplatesSettingsPage() {
         <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
           <h3 className="text-sm font-semibold text-slate-900">Branding</h3>
           <div className="mt-4 space-y-2 text-sm text-slate-600">
-            <p>Logo: abc-logo.png</p>
+            <p>Logo: mahalima-logo.png (required)</p>
+            <p>VAT number: 009-482-771-000 (required)</p>
             <p>Primary color: #1A73E8</p>
           </div>
-          <button className="mt-6 h-10 w-full rounded-xl border border-slate-200 text-sm font-semibold text-slate-600">
-            Update branding
-          </button>
+          <div className="mt-4 space-y-2 text-sm text-slate-600">
+            <p>Email template: Payment reminder (enabled)</p>
+            <p>Email template: Statement delivery (enabled)</p>
+          </div>
+          <div className="mt-6 flex flex-wrap items-center gap-2">
+            <button className="h-10 rounded-xl border border-slate-200 px-4 text-sm font-semibold text-slate-600">
+              Update branding
+            </button>
+            <button className="h-10 rounded-xl border border-slate-200 px-4 text-sm font-semibold text-slate-600">
+              Manage email templates
+            </button>
+            <button className="h-10 rounded-xl border border-slate-200 px-4 text-sm font-semibold text-slate-600">
+              Import template (Excel)
+            </button>
+          </div>
         </div>
       </section>
     </div>

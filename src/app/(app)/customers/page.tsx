@@ -28,16 +28,38 @@ export default function CustomersPage() {
       <section className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
         <div className="flex flex-wrap items-center justify-between gap-3">
           <div className="flex flex-wrap items-center gap-3">
-            <input className="h-10 w-full max-w-xs rounded-xl border border-slate-200 bg-white px-3 text-sm text-slate-700" placeholder="Search customers" />
+            <input
+              className="h-10 w-full max-w-xs rounded-xl border border-slate-200 bg-white px-3 text-sm text-slate-700"
+              placeholder="Search customers"
+            />
             <select className="h-10 rounded-xl border border-slate-200 bg-white px-3 text-sm text-slate-700">
               <option>All balances</option>
               <option>With balance</option>
               <option>Paid</option>
             </select>
+            <select className="h-10 rounded-xl border border-slate-200 bg-white px-3 text-sm text-slate-700">
+              <option>Sort by</option>
+              <option>Alphabetical (A-Z)</option>
+              <option>Alphabetical (Z-A)</option>
+              <option>Client start date (oldest)</option>
+              <option>Client start date (newest)</option>
+            </select>
           </div>
-          <button className="h-10 rounded-xl border border-slate-200 px-3 text-sm font-semibold text-slate-600">
-            Export
-          </button>
+          <div className="flex flex-wrap items-center gap-2">
+            <button className="h-10 rounded-xl border border-slate-200 px-3 text-sm font-semibold text-slate-600">
+              Export CSV
+            </button>
+            <button className="h-10 rounded-xl border border-slate-200 px-3 text-sm font-semibold text-slate-600">
+              Import Excel
+            </button>
+            <button className="h-10 rounded-xl border border-slate-200 px-3 text-sm font-semibold text-slate-600">
+              Download Template
+            </button>
+          </div>
+        </div>
+
+        <div className="mt-4 rounded-xl border border-slate-200 bg-slate-50 p-3 text-xs text-slate-600">
+          Client start date = first recorded transaction date.
         </div>
 
         <div className="mt-6 space-y-3">
@@ -60,6 +82,7 @@ export default function CustomersPage() {
                     {cust.id} · TIN: {cust.tin ?? "N/A"}
                   </p>
                 </div>
+                <div className="text-xs text-slate-500">Client since: Jan 2024</div>
                 <span
                   className={`inline-flex items-center rounded-full border px-2.5 py-1 text-[11px] font-semibold ${balanceStyles(cust.balance)}`}
                 >

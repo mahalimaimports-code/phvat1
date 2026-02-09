@@ -1,9 +1,10 @@
 const settings = [
+  { title: "Application linking", desc: "Connect banks and external systems", href: "/settings/app-linking" },
   { title: "Business profile", desc: "RDO, ATP, PTU, VAT blocks", href: "/settings/business" },
   { title: "Invoice/OR series", desc: "Manage numbering sequences", href: "/settings/series" },
   { title: "Templates", desc: "Branding and document layout", href: "/settings/templates" },
   { title: "Team & roles", desc: "Owners and managers", href: "/settings/team" },
-  { title: "Notifications", desc: "Messenger setup", href: "/settings/notifications" },
+  { title: "Notifications", desc: "In-app, email, SMS", href: "/settings/notifications" },
 ];
 
 export default function SettingsPage() {

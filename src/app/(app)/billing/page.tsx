@@ -26,9 +26,41 @@ export default function BillingPage() {
           <div className="mt-4 rounded-xl border border-slate-200 bg-slate-50 p-3 text-xs text-slate-600">
             Status: Active · Auto-renew enabled
           </div>
-          <a href="/billing/history" className="mt-6 inline-flex text-xs font-semibold text-[#1a73e8]">
+          <button className="mt-4 h-10 rounded-xl border border-slate-200 px-4 text-xs font-semibold text-slate-600">
+            Link bank for auto-pay
+          </button>
+          <a href="/billing/history" className="mt-4 inline-flex text-xs font-semibold text-[#1a73e8]">
             View payment history
           </a>
+        </div>
+      </section>
+
+      <section className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
+        <div className="flex items-center justify-between">
+          <h3 className="text-sm font-semibold text-slate-900">Bills & invoices overview</h3>
+          <button className="text-xs font-semibold text-[#1a73e8]">Download PDF</button>
+        </div>
+        <div className="mt-4 space-y-3">
+          {[
+            { id: "INV-1042", type: "Invoice", amount: "₱5,040.00", status: "Paid" },
+            { id: "INV-1041", type: "Invoice", amount: "₱9,800.00", status: "Overdue" },
+            { id: "SUB-2026-02", type: "Subscription", amount: "₱99.00", status: "Paid" },
+          ].map((item) => (
+            <a
+              key={item.id}
+              href="#"
+              className="flex flex-wrap items-center justify-between gap-4 rounded-xl border border-slate-100 bg-slate-50 px-4 py-3"
+            >
+              <div>
+                <p className="text-sm font-semibold text-slate-900">{item.id}</p>
+                <p className="text-xs text-slate-500">{item.type}</p>
+              </div>
+              <div className="text-right">
+                <p className="text-sm font-semibold text-slate-900">{item.amount}</p>
+                <p className="text-xs text-slate-500">{item.status}</p>
+              </div>
+            </a>
+          ))}
         </div>
       </section>
     </div>

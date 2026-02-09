@@ -3,7 +3,7 @@ export default function NotificationsSettingsPage() {
     <div className="space-y-6">
       <section>
         <h2 className="text-2xl font-semibold text-slate-900">Notifications</h2>
-        <p className="text-sm text-slate-600">Configure Messenger and email alerts.</p>
+        <p className="text-sm text-slate-600">Configure in-app, email, SMS/phone alerts.</p>
       </section>
 
       <section className="grid grid-cols-1 gap-6 lg:grid-cols-[2fr_1fr]">
@@ -34,6 +34,20 @@ export default function NotificationsSettingsPage() {
           <div className="mt-4 space-y-3 text-sm text-slate-600">
             <label className="flex items-center gap-2">
               <input type="checkbox" className="h-4 w-4 accent-[#1a73e8]" defaultChecked />
+              In-app notifications
+            </label>
+            <label className="flex items-center gap-2">
+              <input type="checkbox" className="h-4 w-4 accent-[#1a73e8]" defaultChecked />
+              Email alerts
+            </label>
+            <label className="flex items-center gap-2">
+              <input type="checkbox" className="h-4 w-4 accent-[#1a73e8]" />
+              SMS / Phone alerts
+            </label>
+          </div>
+          <div className="mt-6 space-y-3 text-sm text-slate-600">
+            <label className="flex items-center gap-2">
+              <input type="checkbox" className="h-4 w-4 accent-[#1a73e8]" defaultChecked />
               Payment reminders
             </label>
             <label className="flex items-center gap-2">
@@ -44,6 +58,14 @@ export default function NotificationsSettingsPage() {
               <input type="checkbox" className="h-4 w-4 accent-[#1a73e8]" defaultChecked />
               Weekly summary
             </label>
+          </div>
+          <div className="mt-6 space-y-2">
+            <label className="text-xs font-semibold uppercase tracking-[0.15em] text-slate-500">Frequency</label>
+            <select className="h-11 w-full rounded-xl border border-slate-200 bg-white px-4 text-sm">
+              <option>Immediate</option>
+              <option>Daily digest</option>
+              <option>Weekly digest</option>
+            </select>
           </div>
         </div>
       </section>

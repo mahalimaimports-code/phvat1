@@ -29,17 +29,54 @@ export default function PaymentsPage() {
       <section className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
         <div className="flex flex-wrap items-center justify-between gap-3">
           <div className="flex flex-wrap items-center gap-3">
-            <input className="h-10 w-full max-w-xs rounded-xl border border-slate-200 bg-white px-3 text-sm text-slate-700" placeholder="Search by document" />
+            <input
+              className="h-10 w-full max-w-xs rounded-xl border border-slate-200 bg-white px-3 text-sm text-slate-700"
+              placeholder="Search by document"
+            />
             <select className="h-10 rounded-xl border border-slate-200 bg-white px-3 text-sm text-slate-700">
-              <option>All methods</option>
+              <option>Date range</option>
+              <option>Last 7 days</option>
+              <option>Last 30 days</option>
+              <option>Quarter to date</option>
+              <option>Custom range</option>
+            </select>
+            <select className="h-10 rounded-xl border border-slate-200 bg-white px-3 text-sm text-slate-700">
+              <option>Customer</option>
+              <option>Luna Retail Ventures</option>
+              <option>SariHub Online Store</option>
+              <option>Bituin Co. Ltd.</option>
+            </select>
+            <select className="h-10 rounded-xl border border-slate-200 bg-white px-3 text-sm text-slate-700">
+              <option>VAT type</option>
+              <option>Standard</option>
+              <option>Zero-rated</option>
+              <option>Exempt</option>
+            </select>
+            <select className="h-10 rounded-xl border border-slate-200 bg-white px-3 text-sm text-slate-700">
+              <option>Payment method</option>
               <option>Cash</option>
               <option>Bank Transfer</option>
               <option>E-Wallet</option>
             </select>
           </div>
-          <button className="h-10 rounded-xl border border-slate-200 px-3 text-sm font-semibold text-slate-600">
-            Export
-          </button>
+          <div className="flex flex-wrap items-center gap-2">
+            <button className="h-10 rounded-xl border border-slate-200 px-3 text-sm font-semibold text-slate-600">
+              Link bank / POS
+            </button>
+            <button className="h-10 rounded-xl border border-slate-200 px-3 text-sm font-semibold text-slate-600">
+              Export CSV
+            </button>
+            <button className="h-10 rounded-xl border border-slate-200 px-3 text-sm font-semibold text-slate-600">
+              Import Excel
+            </button>
+            <button className="h-10 rounded-xl border border-slate-200 px-3 text-sm font-semibold text-slate-600">
+              Download Template
+            </button>
+          </div>
+        </div>
+
+        <div className="mt-4 rounded-xl border border-slate-200 bg-slate-50 p-3 text-xs text-slate-600">
+          Linked banks or POS systems can auto-sync payments monthly.
         </div>
 
         <div className="mt-6 space-y-3">

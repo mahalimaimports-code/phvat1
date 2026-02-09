@@ -7,24 +7,25 @@ export default function CustomerStatementReportPage() {
       </section>
 
       <section className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
-        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-          <div className="space-y-2">
-            <label className="text-xs font-semibold uppercase tracking-[0.15em] text-slate-500">Customer</label>
-            <select className="h-11 w-full rounded-xl border border-slate-200 bg-white px-4 text-sm">
-              <option>All customers</option>
-              <option>Luna Retail</option>
-              <option>SariHub</option>
-            </select>
-          </div>
-          <div className="space-y-2">
-            <label className="text-xs font-semibold uppercase tracking-[0.15em] text-slate-500">Period</label>
-            <input className="h-11 w-full rounded-xl border border-slate-200 px-4 text-sm" defaultValue="Jan 1, 2026 - Feb 3, 2026" />
-          </div>
+        <div className="flex flex-wrap items-center gap-3">
+          <select className="h-10 rounded-xl border border-slate-200 bg-white px-3 text-sm">
+            <option>Monthly</option>
+            <option>Quarterly</option>
+            <option>Annually</option>
+            <option>Custom range</option>
+          </select>
+          <input className="h-10 rounded-xl border border-slate-200 px-3 text-sm" defaultValue="Jan 1, 2026" />
+          <input className="h-10 rounded-xl border border-slate-200 px-3 text-sm" defaultValue="Feb 28, 2026" />
+          <select className="h-10 rounded-xl border border-slate-200 bg-white px-3 text-sm">
+            <option>Customer</option>
+            <option>Luna Retail Ventures</option>
+            <option>SariHub Online Store</option>
+          </select>
+          <button className="h-10 rounded-xl bg-[#1a73e8] px-4 text-sm font-semibold text-white">Generate</button>
         </div>
         <div className="mt-4 rounded-xl border border-slate-200 bg-slate-50 p-3 text-xs text-slate-600">
           Statements include unpaid invoices, credits, and recorded payments.
         </div>
-        <button className="mt-6 h-11 rounded-xl bg-[#1a73e8] px-6 text-sm font-semibold text-white">Generate</button>
       </section>
     </div>
   );

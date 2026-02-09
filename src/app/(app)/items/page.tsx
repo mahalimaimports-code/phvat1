@@ -29,17 +29,42 @@ export default function ItemsPage() {
       <section className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
         <div className="flex flex-wrap items-center justify-between gap-3">
           <div className="flex flex-wrap items-center gap-3">
-            <input className="h-10 w-full max-w-xs rounded-xl border border-slate-200 bg-white px-3 text-sm text-slate-700" placeholder="Search items" />
+            <input
+              className="h-10 w-full max-w-xs rounded-xl border border-slate-200 bg-white px-3 text-sm text-slate-700"
+              placeholder="Search items"
+            />
             <select className="h-10 rounded-xl border border-slate-200 bg-white px-3 text-sm text-slate-700">
-              <option>All VAT types</option>
+              <option>VAT type</option>
               <option>Standard</option>
               <option>Zero-rated</option>
               <option>Exempt</option>
             </select>
+            <select className="h-10 rounded-xl border border-slate-200 bg-white px-3 text-sm text-slate-700">
+              <option>Sort by</option>
+              <option>Name (A-Z)</option>
+              <option>Name (Z-A)</option>
+              <option>Price (high to low)</option>
+              <option>Price (low to high)</option>
+            </select>
           </div>
-          <button className="h-10 rounded-xl border border-slate-200 px-3 text-sm font-semibold text-slate-600">
-            Export
-          </button>
+          <div className="flex flex-wrap items-center gap-2">
+            <button className="h-10 rounded-xl border border-slate-200 px-3 text-sm font-semibold text-slate-600">
+              Export PDF
+            </button>
+            <button className="h-10 rounded-xl border border-slate-200 px-3 text-sm font-semibold text-slate-600">
+              Export CSV
+            </button>
+            <button className="h-10 rounded-xl border border-slate-200 px-3 text-sm font-semibold text-slate-600">
+              Import Excel
+            </button>
+            <button className="h-10 rounded-xl border border-slate-200 px-3 text-sm font-semibold text-slate-600">
+              Download Template
+            </button>
+          </div>
+        </div>
+
+        <div className="mt-4 rounded-xl border border-slate-200 bg-slate-50 p-3 text-xs text-slate-600">
+          Attachments can be stored per item (e.g., datasheets, photos).
         </div>
 
         <div className="mt-6 space-y-3">
@@ -68,6 +93,7 @@ export default function ItemsPage() {
                   </div>
                 </div>
                 <p className="text-sm font-semibold text-slate-900">{formatCurrency(item.price)}</p>
+                <div className="text-xs text-slate-500">Attachments: 1</div>
                 <a href={`/items/${item.id}`} className="text-xs font-semibold text-[#1a73e8]">View</a>
               </div>
             ))

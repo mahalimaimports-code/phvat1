@@ -39,7 +39,20 @@ export default function DocumentsPage() {
               placeholder="Search by ID or customer"
             />
             <select className="h-10 rounded-xl border border-slate-200 bg-white px-3 text-sm text-slate-700">
-              <option>All types</option>
+              <option>Date range</option>
+              <option>Last 7 days</option>
+              <option>Last 30 days</option>
+              <option>Quarter to date</option>
+              <option>Custom range</option>
+            </select>
+            <select className="h-10 rounded-xl border border-slate-200 bg-white px-3 text-sm text-slate-700">
+              <option>Contact</option>
+              <option>Luna Retail Ventures</option>
+              <option>SariHub Online Store</option>
+              <option>Bituin Co. Ltd.</option>
+            </select>
+            <select className="h-10 rounded-xl border border-slate-200 bg-white px-3 text-sm text-slate-700">
+              <option>Document type</option>
               <option>Invoice</option>
               <option>Official Receipt</option>
               <option>Credit Note</option>
@@ -50,10 +63,32 @@ export default function DocumentsPage() {
               <option>Pending</option>
               <option>Overdue</option>
             </select>
+            <select className="h-10 rounded-xl border border-slate-200 bg-white px-3 text-sm text-slate-700">
+              <option>Sort by</option>
+              <option>Date (newest)</option>
+              <option>Date (oldest)</option>
+              <option>Amount (high to low)</option>
+              <option>Amount (low to high)</option>
+            </select>
           </div>
-          <button className="h-10 rounded-xl border border-slate-200 px-3 text-sm font-semibold text-slate-600">
-            Export PDF
-          </button>
+          <div className="flex flex-wrap items-center gap-2">
+            <button className="h-10 rounded-xl border border-slate-200 px-3 text-sm font-semibold text-slate-600">
+              Export PDF
+            </button>
+            <button className="h-10 rounded-xl border border-slate-200 px-3 text-sm font-semibold text-slate-600">
+              Export CSV
+            </button>
+            <button className="h-10 rounded-xl border border-slate-200 px-3 text-sm font-semibold text-slate-600">
+              Import Excel
+            </button>
+            <button className="h-10 rounded-xl border border-slate-200 px-3 text-sm font-semibold text-slate-600">
+              Download Template
+            </button>
+          </div>
+        </div>
+
+        <div className="mt-4 rounded-xl border border-slate-200 bg-slate-50 p-3 text-xs text-slate-600">
+          Attachments are stored with each document for audit support.
         </div>
 
         <div className="mt-6 space-y-3">
@@ -86,6 +121,7 @@ export default function DocumentsPage() {
                   </span>
                 </div>
                 <p className="text-sm font-semibold text-slate-900">{formatCurrency(doc.amount)}</p>
+                <div className="text-xs text-slate-500">Attachments: 1</div>
                 <a href={`/documents/${doc.id}`} className="text-xs font-semibold text-[#1a73e8]">
                   View
                 </a>

@@ -12,6 +12,33 @@ export default function ReportsPage() {
         <p className="text-sm text-slate-600">Export reports for accounting and compliance.</p>
       </section>
 
+      <section className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
+        <div className="flex flex-wrap items-center gap-3">
+          <select className="h-10 rounded-xl border border-slate-200 bg-white px-3 text-sm">
+            <option>Weekly</option>
+            <option>Monthly</option>
+            <option>Quarterly</option>
+            <option>Annually</option>
+            <option>Custom range</option>
+          </select>
+          <input className="h-10 rounded-xl border border-slate-200 px-3 text-sm" placeholder="Start date" />
+          <input className="h-10 rounded-xl border border-slate-200 px-3 text-sm" placeholder="End date" />
+          <select className="h-10 rounded-xl border border-slate-200 bg-white px-3 text-sm">
+            <option>Customer</option>
+            <option>Luna Retail Ventures</option>
+            <option>SariHub Online Store</option>
+            <option>Bituin Co. Ltd.</option>
+          </select>
+          <select className="h-10 rounded-xl border border-slate-200 bg-white px-3 text-sm">
+            <option>Tax type</option>
+            <option>VATable</option>
+            <option>Zero-rated</option>
+            <option>Exempt</option>
+          </select>
+          <button className="h-10 rounded-xl bg-[#1a73e8] px-4 text-sm font-semibold text-white">Apply</button>
+        </div>
+      </section>
+
       <section className="grid grid-cols-1 gap-4 md:grid-cols-3">
         {reports.map((report) => (
           <a

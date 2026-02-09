@@ -12,14 +12,22 @@ export default function BusinessSettingsPage() {
         <div className="rounded-xl border border-slate-200 bg-slate-50 p-3 text-xs text-slate-600">
           These fields print on invoices/official receipts and must match your BIR records.
         </div>
-        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+        <div className="mt-4 grid grid-cols-1 gap-4 sm:grid-cols-2">
           <div className="space-y-2">
             <label className="text-xs font-semibold uppercase tracking-[0.15em] text-slate-500">Business name</label>
             <input className="h-11 w-full rounded-xl border border-slate-200 px-4 text-sm" defaultValue={businessProfile.name} />
           </div>
           <div className="space-y-2">
+            <label className="text-xs font-semibold uppercase tracking-[0.15em] text-slate-500">Business email</label>
+            <input className="h-11 w-full rounded-xl border border-slate-200 px-4 text-sm" defaultValue="hello@mahalima.ph" />
+          </div>
+          <div className="space-y-2">
             <label className="text-xs font-semibold uppercase tracking-[0.15em] text-slate-500">TIN</label>
             <input className="h-11 w-full rounded-xl border border-slate-200 px-4 text-sm" defaultValue={businessProfile.tin} />
+          </div>
+          <div className="space-y-2">
+            <label className="text-xs font-semibold uppercase tracking-[0.15em] text-slate-500">Business registration date</label>
+            <input className="h-11 w-full rounded-xl border border-slate-200 px-4 text-sm" defaultValue="Jan 12, 2022" />
           </div>
           <div className="space-y-2">
             <label className="text-xs font-semibold uppercase tracking-[0.15em] text-slate-500">RDO Code</label>
@@ -32,6 +40,22 @@ export default function BusinessSettingsPage() {
           <div className="space-y-2">
             <label className="text-xs font-semibold uppercase tracking-[0.15em] text-slate-500">PTU Number</label>
             <input className="h-11 w-full rounded-xl border border-slate-200 px-4 text-sm" defaultValue={businessProfile.ptu} />
+          </div>
+          <div className="space-y-2">
+            <label className="text-xs font-semibold uppercase tracking-[0.15em] text-slate-500">Website</label>
+            <input className="h-11 w-full rounded-xl border border-slate-200 px-4 text-sm" defaultValue="https://mahalima.ph" />
+          </div>
+          <div className="sm:col-span-2 space-y-2">
+            <label className="text-xs font-semibold uppercase tracking-[0.15em] text-slate-500">Business address</label>
+            <input className="h-11 w-full rounded-xl border border-slate-200 px-4 text-sm" defaultValue={businessProfile.address} />
+          </div>
+          <div className="space-y-2">
+            <label className="text-xs font-semibold uppercase tracking-[0.15em] text-slate-500">Contact person</label>
+            <input className="h-11 w-full rounded-xl border border-slate-200 px-4 text-sm" defaultValue="Mika Santos" />
+          </div>
+          <div className="space-y-2">
+            <label className="text-xs font-semibold uppercase tracking-[0.15em] text-slate-500">Contact details</label>
+            <input className="h-11 w-full rounded-xl border border-slate-200 px-4 text-sm" defaultValue="+63 917 221 4401" />
           </div>
           <div className="space-y-2">
             <label className="text-xs font-semibold uppercase tracking-[0.15em] text-slate-500">VAT Status</label>
